@@ -1,0 +1,326 @@
+\documentclass[11pt,a4paper]{article}
+\input{common}
+\fancyhead[R]{\sffamily\footnotesize\color{muted}Cvičná písemka}
+
+\begin{document}
+
+% ---------- Titulní blok ----------
+{\sffamily\bfseries\fontsize{25}{28}\selectfont\color{accent} Množiny}\par
+\vspace{2pt}
+{\sffamily\large\color{muted} Cvičná písemka s místem na řešení}\par
+\vspace{10pt}
+{\color{rulegray}\rule{\linewidth}{0.6pt}}\par
+\vspace{10pt}
+
+\begin{tip}
+{\sffamily\bfseries\small Jak s tím pracovat}\par\vspace{3pt}
+\begin{itemize}[leftmargin=1.2em,itemsep=2pt]
+  \item \textbf{Části 1–5} procvičují jednotlivá témata (zápisy množin, prvky a $\emptyset$, podmnožiny, sjednocení a průniky, potenční množina). Piš přímo do linkovaných polí.
+  \item \textbf{Část 6} je cvičná písemka na čas: \textbf{20 minut, 20 bodů, bez pomůcek}. Dělej ji až nakonec.
+  \item Řešení jsou ve druhém souboru \textit{Cvicna-pisemka-mnoziny-reseni.pdf}. Nahlédni do nich až po vyřešení.
+  \item Použité značení: $\N=\{1,2,3,\dots\}$, $\N_0=\N\cup\{0\}$, $x\pr y$ znamená „$x$ dělí $y$“.
+\end{itemize}
+\end{tip}
+
+% ==================== ČÁST 1 ====================
+\cast{1}{Zápisy množin}
+
+\Needspace*{7.6cm}
+\uloha{1.1}\textbf{Zapište výčtem prvků:}
+\begin{pol}
+  \item $A=\{x\in\Z\mid x^2<20\}$
+  \item $B=\{n\in\N\mid n\pr 24\ \land\ n>3\}$
+  \item $C=\{3k-1\mid k\in\{1,2,3,4\}\}$
+  \item $D=\{x\in\N\mid 3\pr x\ \land\ x<20\}$
+\end{pol}
+\misto{4.2cm}
+
+\Needspace*{9.7cm}
+\uloha{1.2}\textbf{Zapište množinovým zápisem} (u (a) a (b) alespoň dvěma způsoby):
+\begin{pol}
+  \item množinu všech násobků pěti mezi přirozenými čísly,
+  \item množinu všech druhých mocnin přirozených čísel,
+  \item množinu všech přirozených čísel, která dávají po dělení třemi zbytek 2,
+  \item množinu všech přirozených dělitelů čísla 30.
+\end{pol}
+\misto{6.3cm}
+
+\Needspace*{10.6cm}
+\uloha{1.3}\textbf{Nechť $X,Y\subseteq\N$. Zapište množinovým zápisem:}
+\begin{pol}
+  \item množinu čísel z $X$, která jsou dělitelná \emph{všemi} čísly z $Y$,
+  \item množinu čísel z $Y$, která jsou menší než \emph{některé} číslo z $X$,
+  \item množinu čísel z $X$, která jsou větší než \emph{každé} číslo z $Y$,
+  \item množinu všech součtů dvou (ne nutně různých) čísel z $X$,
+  \item množinu čísel z $Y$, která jsou druhou mocninou nějakého čísla z $X$.
+\end{pol}
+\misto{7.2cm}
+
+\Needspace*{7.0cm}
+\uloha{1.4}Prvek leží v \emph{právě jedné} z množin $A$, $B$. Zapište množinu všech takových prvků (i)~pomocí operací $\cup,\cap,\setminus$, (ii)~pomocí $\in$, $\notin$ a logických spojek.
+\misto{3.6cm}
+
+\Needspace*{6.6cm}
+\uloha{1.5}Popište slovy, jaká čísla obsahuje množina
+\[M=\{n\in\N\mid \forall k\in\N:\ (k\pr n\Rightarrow k=1\lor k=n)\}.\]
+(Pozor na nejmenší prvek.)
+\misto{3.2cm}
+
+% ==================== ČÁST 2 ====================
+\cast{2}{Prvky, prázdná množina, počet prvků}
+
+\Needspace*{8.8cm}
+\uloha{2.1}\textbf{Rozhodněte, zda je výrok pravdivý, a krátce zdůvodněte:}
+\begin{dvasl}
+  \item $\emptyset\subseteq\{\emptyset\}$
+  \item $\{\emptyset\}\subseteq\emptyset$
+  \item $\emptyset\in\{\{\emptyset\}\}$
+  \item $\{\emptyset\}\in\{\{\emptyset\}\}$
+  \item $\{1,2\}\in\{1,2,\{1,2\}\}$
+  \item $\{1,2\}\subseteq\{1,2,\{1,2\}\}$
+  \item $\{\{1\}\}\subseteq\{1,\{1\}\}$
+  \item $\Pot(\emptyset)=\{\emptyset\}$
+\end{dvasl}
+\misto{5.4cm}
+
+\Needspace*{8.8cm}
+\uloha{2.2}\textbf{Kolik prvků mají tyto množiny? Prvky vypište.}
+\begin{pol}
+  \item $\{1,\{1\},\{1,1\},\{\{1\}\},\emptyset,\{\emptyset\},\{\}\}$
+  \item $\{a,b\}\cup\{b,c\}\cup\{\{a,b\}\}$
+  \item $\{\emptyset,\{\emptyset,\emptyset\},\{\{\emptyset\}\}\}$
+  \item $\Pot(\{a,b\})\cup\{a,b\}$
+\end{pol}
+\misto{5.4cm}
+
+\Needspace*{9.0cm}
+\uloha{2.3}Nechť $S=\{1,\,2,\,\{3\},\,\{1,2\}\}$. Do tabulky napište \emph{ano} / \emph{ne}:
+\par\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{2.15}
+\setlength{\tabcolsep}{14pt}
+\begin{tabular}{@{}|>{\centering\arraybackslash}p{2.6cm}|>{\centering\arraybackslash}p{2.6cm}|>{\centering\arraybackslash}p{2.6cm}|@{}}
+\hline
+{\sffamily\small\color{muted}$x$} & {\sffamily\small\color{muted}$x\in S$} & {\sffamily\small\color{muted}$x\subseteq S$}\\
+\hline
+$\{1\}$ & & \\ \hline
+$\{3\}$ & & \\ \hline
+$\{1,2\}$ & & \\ \hline
+$\{\{3\}\}$ & & \\ \hline
+$\emptyset$ & & \\ \hline
+\end{tabular}
+\end{center}
+
+\Needspace*{8.4cm}
+\uloha{2.4}\begin{pol}
+  \item Vypište všechny prvky množiny $\Pot(\{1,\{2\}\})$.
+  \item Vypište $\Pot(\Pot(\emptyset))$.
+  \item Kolik prvků má $\Pot(\Pot(\{a\}))$?
+\end{pol}
+\misto{5cm}
+
+% ==================== ČÁST 3 ====================
+\cast{3}{Podmnožiny}
+
+\Needspace*{6.7cm}
+\uloha{3.1}Nechť $A=\{1,2,3,4,5\}$, $B=\{2,4\}$, $C=\{1,2,3\}$, $D=\{2,3,6\}$. Rozhodněte pravda/nepravda:
+\begin{dvasl}
+  \item $B\subseteq A$
+  \item $D\subseteq A$
+  \item $B\subseteq C$
+  \item $C\cap D\subseteq C$
+  \item $C\cap D\subseteq B$
+  \item $A\setminus D\subseteq A$
+\end{dvasl}
+\misto{3.3cm}
+
+\Needspace*{8.4cm}
+\uloha{3.2}\textbf{Zapište pomocí kvantifikátorů} (nad prvky množin $A$, $B$):
+\begin{dvasl}
+  \item $A\subseteq B$
+  \item $A\nsubseteq B$
+  \item $A\cap B=\emptyset$
+  \item $A\subsetneq B$
+  \item $A\neq B$
+\end{dvasl}
+\misto{5cm}
+
+\Needspace*{8.0cm}
+\uloha{3.3}Nechť $A=\{n\in\N\mid 6\pr n\}$, $B=\{n\in\N\mid 2\pr n\}$, $C=\{n\in\N\mid 3\pr n\}$. Určete vztah (platí $\subseteq$, $\supseteq$, $=$, nebo jsou množiny neporovnatelné?) a zdůvodněte:
+\begin{pol}
+  \item $A$ a $B$ \qquad (b) $A$ a $C$ \qquad (c) $B$ a $C$ \qquad (d) $A$ a $B\cap C$
+\end{pol}
+\misto{4.6cm}
+
+\Needspace*{11.0cm}
+\uloha{3.4}\textbf{Dokažte:}
+\begin{pol}
+  \item Jestliže $A\subseteq B$, pak $A\cap C\subseteq B\cap C$.
+  \item Jestliže $A\cup B=A\cap B$, pak $A=B$.
+\end{pol}
+\misto{7.6cm}
+
+% ==================== ČÁST 4 ====================
+\cast{4}{Sjednocení, průnik, rozdíl}
+
+\Needspace*{8.0cm}
+\uloha{4.1}Nechť $A=\{1,2,3,4,5,6\}$, $B=\{2,4,6,8\}$, $C=\{3,6,9\}$. Vypište:
+\begin{dvasl}
+  \item $A\cup B$
+  \item $A\cap B$
+  \item $A\setminus B$
+  \item $B\setminus A$
+  \item $(A\cap B)\cup C$
+  \item $A\setminus(B\cup C)$
+  \item $(A\cup C)\setminus B$
+  \item $|A\cup B\cup C|$
+\end{dvasl}
+\misto{4.6cm}
+
+\Needspace*{7.6cm}
+\uloha{4.2}Nechť $A=\{n\in\N\mid 2\pr n\}$, $B=\{n\in\N\mid 3\pr n\}$, $C=\{n\in\N\mid n\le12\}$. Vypište prvky:
+\begin{pol}
+  \item $A\cap B\cap C$ \quad (b) $(A\cup B)\cap C$ \quad (c) $C\setminus(A\cup B)$ \quad (d) $(A\setminus B)\cap C$
+\end{pol}
+\misto{4.2cm}
+
+\Needspace*{11.8cm}
+\uloha{4.3}Které z množin jsou si pro libovolné $A,B,C$ rovny? Rozdělte je do skupin. Jednu rovnost dokažte (řetězem ekvivalencí) a u jedné dvojice, která si rovna není, uveďte konkrétní protipříklad.
+\begin{dvasl}
+  \item $A\setminus(B\cap C)$
+  \item $(A\setminus B)\cup(A\setminus C)$
+  \item $(A\setminus B)\cap(A\setminus C)$
+  \item $A\setminus(B\cup C)$
+  \item $(A\cup B)\setminus C$
+  \item $(A\setminus C)\cup(B\setminus C)$
+\end{dvasl}
+\misto{8.4cm}
+
+\Needspace*{11.6cm}
+\uloha{4.4}Pro libovolné množiny $A,B,C$: dokažte, nebo vyvraťte protipříkladem.
+\begin{dvasl}
+  \item $(A\setminus B)\cup B=A$
+  \item $A\cap(B\setminus C)=(A\cap B)\setminus C$
+  \item $A\setminus(A\setminus B)=A\cap B$
+  \item $A\setminus(B\setminus C)=(A\setminus B)\setminus C$
+\end{dvasl}
+\misto{8.2cm}
+
+\Needspace*{8.2cm}
+\uloha{4.5}\begin{pol}
+  \item Je-li $|A|=12$, $|B|=9$ a $|A\cap B|=4$, určete $|A\cup B|$, $|A\setminus B|$, $|A\times B|$ a $|\Pot(A\cap B)|$.
+  \item Ve třídě je 30 studentů. Fotbal hraje 18, basketbal 14 a oba sporty 7 studentů. Kolik jich nehraje ani jeden?
+\end{pol}
+\misto{4.8cm}
+
+% ==================== ČÁST 5 ====================
+\cast{5}{Potenční množina, indexovaná sjednocení a průniky}
+
+\Needspace*{7.0cm}
+\uloha{5.1}Nechť $A=\{1,2\}$. Rozhodněte pravda/nepravda:
+\begin{dvasl}
+  \item $\{1\}\in\Pot(A)$
+  \item $1\in\Pot(A)$
+  \item $\emptyset\in\Pot(A)$
+  \item $\{\{1\}\}\subseteq\Pot(A)$
+  \item $A\subseteq\Pot(A)$
+  \item $\{1,2,3\}\in\Pot(A)$
+\end{dvasl}
+\misto{3.6cm}
+
+\Needspace*{9.8cm}
+\uloha{5.2}Pro $i=1,2,\dots,5$ nechť $M_i=\{j\in\N\mid 2j\le i\}$. Vypište $M_1,\dots,M_5$ a určete:
+\begin{pol}
+  \item $\displaystyle\bigcup_{i=1}^{5}M_i$ \qquad (b) $\displaystyle\bigcap_{i=1}^{5}M_i$ \qquad (c) $\displaystyle\bigcup_{i=1}^{5}\{M_i\}$ \qquad (d) $\displaystyle\bigcap_{i=1}^{5}\{M_i\}$ \qquad (e) $\displaystyle\Big\{\bigcup_{i=1}^{5}M_i\Big\}$
+\end{pol}
+\misto{6.4cm}
+
+\Needspace*{11.0cm}
+\uloha{5.3}Pro libovolné množiny $A,B$:
+\begin{pol}
+  \item dokažte $\Pot(A\cap B)=\Pot(A)\cap\Pot(B)$,
+  \item na příkladu ukažte, že $\Pot(A\cup B)\neq\Pot(A)\cup\Pot(B)$ nemusí platit rovnost,
+  \item platí vždy $\Pot(A)\cup\Pot(B)\subseteq\Pot(A\cup B)$? Zdůvodněte.
+\end{pol}
+\misto{7.6cm}
+
+\Needspace*{7.8cm}
+\uloha{5.4}\textbf{Kolik prvků mají:}
+\begin{pol}
+  \item $\Pot(\{1,2,3,4,5\})$,
+  \item množina všech podmnožin $\{1,2,3,4,5\}$ se sudým počtem prvků,
+  \item množina všech dvouprvkových podmnožin $\{1,2,3,4,5\}$,
+  \item $\Pot(A\times B)$, kde $|A|=2$ a $|B|=3$?
+\end{pol}
+\misto{4.4cm}
+
+% ==================== ČÁST 6 ====================
+\newpage
+\cast{6}{Cvičná písemka na čas}
+
+\begin{tcolorbox}[enhanced,colback=white,colframe=accent,boxrule=0.8pt,arc=4pt,left=12pt,right=12pt,top=7pt,bottom=7pt,before skip=2pt,after skip=4pt]
+\sffamily\small
+\begin{tabular}{@{}p{0.31\linewidth}p{0.31\linewidth}p{0.3\linewidth}@{}}
+\textbf{Čas:} 20 minut & \textbf{Max.:} 20 bodů & \textbf{Bez pomůcek} \\
+\end{tabular}
+\par\vspace{4pt}
+{\color{muted}Zapište celé postupy a zdůvodnění. U kvantifikátorů vždy uveďte, přes jakou množinu kvantifikujete.}
+\end{tcolorbox}
+\begin{center}
+\sffamily\small
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\color{muted}Úloha 1 & \color{muted}Úloha 2 & \color{muted}Úloha 3 & \color{muted}Úloha 4 & \color{muted}Úloha 5 & \textbf{Celkem}\\
+\hline
+\hspace{1cm}/\,4 & \hspace{1cm}/\,4 & \hspace{1cm}/\,4 & \hspace{1cm}/\,4 & \hspace{1cm}/\,4 & \hspace{1.2cm}/\,20\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\Needspace*{7.6cm}
+\uloha{Úloha 1}\textbf{Zápis množin.}\bodu{4}\par
+Zapište množinovým zápisem ($X,Y\subseteq\N$, $M$ je konečná množina):
+\begin{pol}
+  \item množinu všech přirozených čísel dělitelných čtyřmi \emph{nebo} šesti,
+  \item množinu čísel z $X$, která jsou menší než každé číslo z $Y$,
+  \item množinu všech trojnásobků čísel z $X$,
+  \item množinu všech podmnožin $M$, které mají alespoň dva prvky.
+\end{pol}
+\misto{4.2cm}
+
+\Needspace*{7.0cm}
+\uloha{Úloha 2}\textbf{Pravda, nebo nepravda?}\bodu{4}\par
+Zdůvodněte krátce:
+\begin{pol}
+  \item $\{\emptyset\}\subseteq\Pot(\{1\})$ \qquad (b) $\emptyset\in\{\{\emptyset\}\}$ \qquad (c) $\{\{1\}\}\subseteq\{1,\{1\}\}$ \qquad (d) $2\in\Pot(\{1,2\})$
+\end{pol}
+\misto{3.6cm}
+
+\Needspace*{7.8cm}
+\uloha{Úloha 3}\textbf{Počty prvků.}\bodu{4}\par
+\begin{pol}
+  \item Kolik prvků má $\{a,\{a\},\{a,a\},\emptyset,\{\emptyset\},\{\{a\}\}\}$? Vypište je. \hfill{\sffamily\footnotesize\color{muted}2 b}
+  \item $|\Pot(\Pot(\{1\}))|=\ $? \hfill{\sffamily\footnotesize\color{muted}1 b}
+  \item Pro $A=\{1,2,3\}$, $B=\{3,4\}$ určete $|A\times B|$ a $|A\cup B|$. \hfill{\sffamily\footnotesize\color{muted}1 b}
+\end{pol}
+\misto{4.4cm}
+
+\Needspace*{7.6cm}
+\uloha{Úloha 4}\textbf{Kvantifikátory a negace.}\bodu{4}\par
+Zapište formulí s kvantifikátory větu „Každé číslo z množiny $A$ je menší než některé číslo z množiny $B$“ ($A,B\subseteq\N$) a poté formuli \textbf{znegujte} (bez negace před kvantifikátorem). \hfill{\sffamily\footnotesize\color{muted}2 b + 2 b}
+\misto{4.2cm}
+
+\Needspace*{11.0cm}
+\uloha{Úloha 5}\textbf{Rovnosti množin.}\bodu{4}\par
+\begin{pol}
+  \item Dokažte: $(A\cup B)\setminus C=(A\setminus C)\cup(B\setminus C)$. \hfill{\sffamily\footnotesize\color{muted}2 b}
+  \item Vyvraťte: $A\setminus(B\setminus C)=(A\setminus B)\setminus C$. \hfill{\sffamily\footnotesize\color{muted}2 b}
+\end{pol}
+\misto{7.6cm}
+
+
+
+\end{document}

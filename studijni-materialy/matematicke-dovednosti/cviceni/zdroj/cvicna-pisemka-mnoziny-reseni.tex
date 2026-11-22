@@ -1,0 +1,305 @@
+\documentclass[11pt,a4paper]{article}
+\input{common}
+\fancyhead[R]{\sffamily\footnotesize\color{muted}Řešení cvičné písemky}
+
+\newcommand{\zad}[2]{\par\Needspace*{4cm}\vspace{1.1em}\noindent\textcolor{accent}{\sffamily\bfseries #1}\enspace #2\par}
+
+\begin{document}
+
+{\sffamily\bfseries\fontsize{25}{28}\selectfont\color{accent} Množiny}\par
+\vspace{2pt}
+{\sffamily\large\color{muted} Řešení cvičné písemky}\par
+\vspace{10pt}
+{\color{rulegray}\rule{\linewidth}{0.6pt}}\par
+\vspace{8pt}
+
+\begin{varovani}
+{\sffamily\bfseries\small Nejdřív řeš, potom čti.}\par\vspace{2pt}
+Řešení má smysl až po vlastním pokusu. U důkazů je podstatná \emph{stavba} argumentu (co předpokládám, co dokazuji, který krok je ekvivalence). Stejné závěry z jiného postupu jsou také správně.
+\end{varovani}
+
+% ==================== ČÁST 1 ====================
+\cast{1}{Zápisy množin}
+
+\zad{1.1}{Výčtem prvků.}
+\begin{reseni}
+(a) $A=\{-4,-3,-2,-1,0,1,2,3,4\}$ (pro $|x|=4$ je $16<20$, pro $|x|=5$ je $25\not<20$; pozor na záporná čísla a nulu).\\
+(b) $B=\{4,6,8,12,24\}$ (dělitelé 24 jsou $1,2,3,4,6,8,12,24$, ponecháme ty větší než 3).\\
+(c) $C=\{2,5,8,11\}$.\\
+(d) $D=\{3,6,9,12,15,18\}$.
+\end{reseni}
+
+\zad{1.2}{Množinovým zápisem.}
+\begin{reseni}
+(a) $\{5k\mid k\in\N\}=\{n\in\N\mid 5\pr n\}=\{n\in\N\mid\exists k\in\N:\ n=5k\}$.\\
+(b) $\{k^2\mid k\in\N\}=\{n\in\N\mid\exists k\in\N:\ n=k^2\}$.\\
+(c) $\{3k+2\mid k\in\N_0\}=\{n\in\N\mid\exists k\in\N_0:\ n=3k+2\}=\{n\in\N\mid 3\pr(n-2)\}$.\\
+(d) $\{d\in\N\mid d\pr 30\}=\{1,2,3,5,6,10,15,30\}$.
+
+\smallskip
+{\sffamily\footnotesize\color{muted}Převod mezi zápisy: $\{f(k)\mid k\in K\}=\{y\mid\exists k\in K:\ y=f(k)\}$. Pozor, odkud $k$ běží ($\N$ vs.\ $\N_0$).}
+\end{reseni}
+
+\zad{1.3}{Zápis pomocí $X,Y\subseteq\N$.}
+\begin{reseni}
+(a) $\{x\in X\mid\forall y\in Y:\ y\pr x\}$\\
+(b) $\{y\in Y\mid\exists x\in X:\ y<x\}$\\
+(c) $\{x\in X\mid\forall y\in Y:\ x>y\}$\\
+(d) $\{x_1+x_2\mid x_1,x_2\in X\}=\{n\in\N\mid\exists x_1,x_2\in X:\ n=x_1+x_2\}$\\
+(e) $\{y\in Y\mid\exists x\in X:\ y=x^2\}$
+
+\smallskip
+{\sffamily\footnotesize\color{muted}„Každý/všechny“ $\to\forall$, „některý/nějaký“ $\to\exists$. Prvky výsledku jsou z $X$ (resp.\ $Y$), proto se vybírá z té množiny.}
+\end{reseni}
+
+\zad{1.4}{Právě jedna z množin $A,B$ (symetrický rozdíl).}
+\begin{reseni}
+(i) $(A\cup B)\setminus(A\cap B)$, nebo $(A\setminus B)\cup(B\setminus A)$.\\
+(ii) $\{x\mid(x\in A\land x\notin B)\lor(x\in B\land x\notin A)\}$.
+\end{reseni}
+
+\zad{1.5}{$M=\{n\in\N\mid\forall k\in\N:\ (k\pr n\Rightarrow k=1\lor k=n)\}$.}
+\begin{reseni}
+Podmínka říká: jediní možní dělitelé $n$ jsou $1$ a $n$. To splňují \textbf{prvočísla} \emph{a také číslo $1$} (jeho jediný dělitel je $1$, tedy $k=1$ vždy platí). $M=\{1\}\cup\{\text{prvočísla}\}=\{1,2,3,5,7,11,\dots\}$.
+\end{reseni}
+
+% ==================== ČÁST 2 ====================
+\cast{2}{Prvky, prázdná množina, počet prvků}
+
+\zad{2.1}{Pravda / nepravda.}
+\begin{reseni}
+(a) \pravda: $\emptyset\subseteq A$ platí pro každou množinu $A$.\\
+(b) \nepravda: $\{\emptyset\}$ má prvek $\emptyset$, který neleží v $\emptyset$.\\
+(c) \nepravda: jediný prvek množiny $\{\{\emptyset\}\}$ je $\{\emptyset\}$, a to není $\emptyset$.\\
+(d) \pravda: $\{\emptyset\}$ je přesně ten jediný prvek.\\
+(e) \pravda: $\{1,2\}$ je třetím prvkem.\\
+(f) \pravda: $1\in S$ a $2\in S$, tedy každý prvek $\{1,2\}$ leží v $S$.\\
+(g) \pravda: $\{1\}$ je prvkem $\{1,\{1\}\}$, a $\{\{1\}\}$ obsahuje jen $\{1\}$.\\
+(h) \pravda: $\Pot(\emptyset)=\{\emptyset\}$ (jedině $\emptyset$ je podmnožinou $\emptyset$).
+\end{reseni}
+
+\zad{2.2}{Počet prvků.}
+\begin{reseni}
+(a) $\{1,\{1\},\{1,1\},\{\{1\}\},\emptyset,\{\emptyset\},\{\}\}$: platí $\{1,1\}=\{1\}$ a $\{\}=\emptyset$. Různé prvky: $1$, $\{1\}$, $\{\{1\}\}$, $\emptyset$, $\{\emptyset\}$. \textbf{5 prvků.}\\
+(b) $\{a,b,c,\{a,b\}\}$: \textbf{4 prvky.}\\
+(c) $\{\emptyset,\{\emptyset,\emptyset\},\{\{\emptyset\}\}\}$, kde $\{\emptyset,\emptyset\}=\{\emptyset\}$. Prvky: $\emptyset$, $\{\emptyset\}$, $\{\{\emptyset\}\}$. \textbf{3 prvky.}\\
+(d) $\Pot(\{a,b\})=\{\emptyset,\{a\},\{b\},\{a,b\}\}$, sjednocením s $\{a,b\}$ přibudou prvky $a,b$ (to jsou jiné objekty než podmnožiny). Celkem $\emptyset,\{a\},\{b\},\{a,b\},a,b$: \textbf{6 prvků.}
+\end{reseni}
+
+\zad{2.3}{Tabulka pro $S=\{1,2,\{3\},\{1,2\}\}$.}
+\begin{reseni}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lcc@{}}
+$x$ & $x\in S$ & $x\subseteq S$\\
+$\{1\}$ & ne & \textbf{ano} ($1\in S$)\\
+$\{3\}$ & \textbf{ano} & ne ($3\notin S$)\\
+$\{1,2\}$ & \textbf{ano} & \textbf{ano} ($1,2\in S$)\\
+$\{\{3\}\}$ & ne & \textbf{ano} ($\{3\}\in S$)\\
+$\emptyset$ & ne & \textbf{ano}
+\end{tabular}
+
+\smallskip
+{\sffamily\footnotesize\color{muted}$x\in S$: je $x$ \emph{přímo} prvkem seznamu? $x\subseteq S$: leží \emph{každý prvek} množiny $x$ v $S$?}
+\end{reseni}
+
+\zad{2.4}{Potenční množiny.}
+\begin{reseni}
+(a) $\Pot(\{1,\{2\}\})=\{\emptyset,\ \{1\},\ \{\{2\}\},\ \{1,\{2\}\}\}$ (4 prvky; množina má dva prvky: $1$ a $\{2\}$).\\
+(b) $\Pot(\emptyset)=\{\emptyset\}$, tedy $\Pot(\Pot(\emptyset))=\Pot(\{\emptyset\})=\{\emptyset,\{\emptyset\}\}$.\\
+(c) $\Pot(\{a\})=\{\emptyset,\{a\}\}$ má 2 prvky, proto $|\Pot(\Pot(\{a\}))|=2^2=4$.
+\end{reseni}
+
+% ==================== ČÁST 3 ====================
+\cast{3}{Podmnožiny}
+
+\zad{3.1}{$A=\{1,..,5\}$, $B=\{2,4\}$, $C=\{1,2,3\}$, $D=\{2,3,6\}$.}
+\begin{reseni}
+(a) \pravda\\
+(b) \nepravda ($6\notin A$)\\
+(c) \nepravda ($4\notin C$)\\
+(d) \pravda (průnik je vždy podmnožinou obou)\\
+(e) \nepravda ($C\cap D=\{2,3\}$ a $3\notin B$)\\
+(f) \pravda (rozdíl je vždy podmnožinou prvního).
+\end{reseni}
+
+\zad{3.2}{Kvantifikátory.}
+\begin{reseni}
+(a) $\forall x\in A:\ x\in B$\\
+(b) $\exists x\in A:\ x\notin B$\\
+(c) $\forall x\in A:\ x\notin B$ (ekvivalentně $\neg\exists x\,(x\in A\land x\in B)$)\\
+(d) $(\forall x\in A:\ x\in B)\land(\exists y\in B:\ y\notin A)$\\
+(e) $(\exists x\in A:\ x\notin B)\lor(\exists y\in B:\ y\notin A)$, tj.\ $A\nsubseteq B$ nebo $B\nsubseteq A$.
+\end{reseni}
+
+\zad{3.3}{Dělitelnost a množiny.}
+\begin{reseni}
+(a) $A\subseteq B$ (každý násobek 6 je sudý), navíc $A\neq B$ (např.\ $2\in B\setminus A$).\\
+(b) $A\subseteq C$ (každý násobek 6 je násobkem 3).\\
+(c) \textbf{neporovnatelné}: $2\in B\setminus C$ a $3\in C\setminus B$.\\
+(d) $A=B\cap C$: $n\in B\cap C\Leftrightarrow 2\pr n\land 3\pr n\Leftrightarrow 6\pr n$, protože 2 a 3 jsou nesoudělná.
+\end{reseni}
+
+\zad{3.4}{Důkazy.}
+\begin{reseni}
+\textbf{(a)} Nechť $A\subseteq B$. Vezměme libovolné $x\in A\cap C$. Pak $x\in A$ a $x\in C$. Z $A\subseteq B$ plyne $x\in B$. Tedy $x\in B$ a $x\in C$, takže $x\in B\cap C$. Protože $x$ bylo libovolné, $A\cap C\subseteq B\cap C$. \hfill$\blacksquare$
+
+\smallskip
+\textbf{(b)} Nechť $A\cup B=A\cap B$. \emph{$A\subseteq B$:} je-li $x\in A$, pak $x\in A\cup B=A\cap B$, tedy $x\in B$. \emph{$B\subseteq A$:} je-li $x\in B$, pak $x\in A\cup B=A\cap B$, tedy $x\in A$. Z obou inkluzí plyne $A=B$. \hfill$\blacksquare$
+\end{reseni}
+
+% ==================== ČÁST 4 ====================
+\cast{4}{Sjednocení, průnik, rozdíl}
+
+\zad{4.1}{$A=\{1,..,6\}$, $B=\{2,4,6,8\}$, $C=\{3,6,9\}$.}
+\begin{reseni}
+(a) $A\cup B=\{1,2,3,4,5,6,8\}$\\
+(b) $A\cap B=\{2,4,6\}$\\
+(c) $A\setminus B=\{1,3,5\}$\\
+(d) $B\setminus A=\{8\}$\\
+(e) $(A\cap B)\cup C=\{2,3,4,6,9\}$\\
+(f) $A\setminus(B\cup C)$: $B\cup C=\{2,3,4,6,8,9\}$, tedy $\{1,5\}$\\
+(g) $(A\cup C)\setminus B$: $A\cup C=\{1,\dots,6,9\}$, po odebrání $B$ zůstane $\{1,3,5,9\}$\\
+(h) $A\cup B\cup C=\{1,2,3,4,5,6,8,9\}$, tedy $|A\cup B\cup C|=8$.
+\end{reseni}
+
+\zad{4.2}{$A$ sudá, $B$ násobky 3, $C=\{1,\dots,12\}$.}
+\begin{reseni}
+(a) $A\cap B\cap C=\{6,12\}$\\
+(b) $(A\cup B)\cap C=\{2,3,4,6,8,9,10,12\}$\\
+(c) $C\setminus(A\cup B)=\{1,5,7,11\}$\\
+(d) $(A\setminus B)\cap C=\{2,4,8,10\}$
+\end{reseni}
+
+\zad{4.3}{Skupiny rovných množin.}
+\begin{reseni}
+Skupiny: \textbf{(a)=(b)}, \textbf{(c)=(d)}, \textbf{(e)=(f)}.
+
+\smallskip
+\emph{Důkaz (e)=(f):} pro libovolné $x$ platí
+\[
+\begin{aligned}
+x\in(A\cup B)\setminus C&\Leftrightarrow(x\in A\lor x\in B)\land x\notin C\\
+&\Leftrightarrow(x\in A\land x\notin C)\lor(x\in B\land x\notin C)\\
+&\Leftrightarrow x\in(A\setminus C)\cup(B\setminus C).
+\end{aligned}
+\]
+(Druhá ekvivalence je distributivita $\land$ přes $\lor$.)
+
+\smallskip
+\emph{Proč (a)=(b):} $x\in A\setminus(B\cap C)\Leftrightarrow x\in A\land\neg(x\in B\land x\in C)\Leftrightarrow x\in A\land(x\notin B\lor x\notin C)\Leftrightarrow(A\setminus B)\cup(A\setminus C)$. \emph{(c)=(d):} $x\in A\land x\notin B\land x\notin C$ vyjde v obou případech.
+
+\smallskip
+\emph{Protipříklad, že (a)$\ne$(c):} $A=B=\{1\}$, $C=\emptyset$. Pak $A\setminus(B\cap C)=\{1\}\setminus\emptyset=\{1\}$, ale $(A\setminus B)\cap(A\setminus C)=\emptyset\cap\{1\}=\emptyset$.
+\end{reseni}
+
+\zad{4.4}{Dokázat, nebo vyvrátit.}
+\begin{reseni}
+(a) \nepravda: $A=\{1\}$, $B=\{2\}$. $(A\setminus B)\cup B=\{1,2\}\neq\{1\}$. (Obecně vychází $A\cup B$.)\\[3pt]
+(b) \pravda: $x\in A\cap(B\setminus C)\Leftrightarrow x\in A\land x\in B\land x\notin C\Leftrightarrow x\in(A\cap B)\setminus C$.\\[3pt]
+(c) \pravda: $x\in A\setminus(A\setminus B)\Leftrightarrow x\in A\land\neg(x\in A\land x\notin B)\Leftrightarrow x\in A\land(x\notin A\lor x\in B)\Leftrightarrow x\in A\land x\in B$ (první část $x\in A\land x\notin A$ je spor).\\[3pt]
+(d) \nepravda: $A=B=C=\{1\}$. $A\setminus(B\setminus C)=\{1\}\setminus\emptyset=\{1\}$, ale $(A\setminus B)\setminus C=\emptyset$. Rozdíl množin není asociativní.
+\end{reseni}
+
+\zad{4.5}{Velikosti.}
+\begin{reseni}
+(a) $|A\cup B|=12+9-4=17$, $|A\setminus B|=12-4=8$, $|A\times B|=12\cdot9=108$, $|\Pot(A\cap B)|=2^4=16$.\\
+(b) Aspoň jeden sport hraje $18+14-7=25$ studentů, žádný tedy $30-25=5$.
+\end{reseni}
+
+% ==================== ČÁST 5 ====================
+\cast{5}{Potenční množina, indexovaná sjednocení a průniky}
+
+\zad{5.1}{$A=\{1,2\}$, tedy $\Pot(A)=\{\emptyset,\{1\},\{2\},\{1,2\}\}$.}
+\begin{reseni}
+(a) \pravda\\
+(b) \nepravda ($1$ není podmnožina, ale prvek $A$)\\
+(c) \pravda\\
+(d) \pravda ($\{1\}\in\Pot(A)$, a $\{\{1\}\}$ obsahuje jen $\{1\}$)\\
+(e) \nepravda ($1\in A$, ale $1\notin\Pot(A)$)\\
+(f) \nepravda ($3\notin A$).
+\end{reseni}
+
+\zad{5.2}{$M_i=\{j\in\N\mid 2j\le i\}$, $i=1,\dots,5$.}
+\begin{reseni}
+$M_1=\emptyset$, $M_2=M_3=\{1\}$, $M_4=M_5=\{1,2\}$.
+
+(a) $\bigcup M_i=\{1,2\}$\\
+(b) $\bigcap M_i=\emptyset$ (kvůli $M_1=\emptyset$)\\
+(c) $\bigcup\{M_i\}=\{\emptyset,\{1\},\{1,2\}\}$ (sbírá se samotné množiny $M_i$ jako prvky)\\
+(d) $\bigcap\{M_i\}=\emptyset$ (jednoprvkové množiny $\{\emptyset\}$, $\{\{1\}\}$, $\{\{1,2\}\}$ nemají společný prvek)\\
+(e) $\{\bigcup M_i\}=\{\{1,2\}\}$ (výsledek z (a) obalený závorkami)
+\end{reseni}
+
+\zad{5.3}{Potence a operace.}
+\begin{reseni}
+\textbf{(a)} Pro libovolnou množinu $X$:
+\[
+\begin{aligned}
+X\in\Pot(A\cap B)&\Leftrightarrow X\subseteq A\cap B\Leftrightarrow(X\subseteq A\land X\subseteq B)\\
+&\Leftrightarrow(X\in\Pot(A)\land X\in\Pot(B))\Leftrightarrow X\in\Pot(A)\cap\Pot(B).\ \blacksquare
+\end{aligned}
+\]
+\textbf{(b)} $A=\{1\}$, $B=\{2\}$: $\{1,2\}\in\Pot(A\cup B)$, ale $\{1,2\}\notin\Pot(A)\cup\Pot(B)$, protože není podmnožinou $A$ ani $B$.
+
+\textbf{(c)} Ano. Je-li $X\in\Pot(A)\cup\Pot(B)$, pak $X\subseteq A$ nebo $X\subseteq B$. Obojí je podmnožina $A\cup B$, tedy $X\in\Pot(A\cup B)$. Opačná inkluze obecně neplatí podle (b). \hfill$\blacksquare$
+\end{reseni}
+
+\zad{5.4}{Počty.}
+\begin{reseni}
+(a) $2^5=32$.\\
+(b) $16$. Podmnožin se sudým počtem prvků je $\binom50+\binom52+\binom54=1+10+5=16$ (i $\emptyset$ má sudý počet 0).\\
+(c) $\binom52=10$.\\
+(d) $|A\times B|=6$, tedy $|\Pot(A\times B)|=2^6=64$.
+\end{reseni}
+
+% ==================== ČÁST 6 ====================
+\newpage
+\cast{6}{Cvičná písemka na čas: řešení s bodováním}
+
+\zad{Úloha 1\ \ (4 b)}{Zápisy, 1~bod za každou správnou položku.}
+\begin{reseni}
+(a) $\{n\in\N\mid 4\pr n\lor 6\pr n\}$\\
+(b) $\{x\in X\mid\forall y\in Y:\ x<y\}$\\
+(c) $\{3x\mid x\in X\}=\{n\in\N\mid\exists x\in X:\ n=3x\}$\\
+(d) $\{S\in\Pot(M)\mid |S|\ge2\}$ (nebo $\{S\mid S\subseteq M\land|S|\ge2\}$)
+\end{reseni}
+
+\zad{Úloha 2\ \ (4 b)}{Pravda / nepravda, 1~bod za položku se zdůvodněním.}
+\begin{reseni}
+(a) \pravda: $\emptyset\in\Pot(\{1\})$, takže jediný prvek $\{\emptyset\}$ leží v $\Pot(\{1\})$.\\
+(b) \nepravda: jediný prvek $\{\{\emptyset\}\}$ je $\{\emptyset\}$, nikoli $\emptyset$.\\
+(c) \pravda: $\{1\}\in\{1,\{1\}\}$.\\
+(d) \nepravda: prvky $\Pot(\{1,2\})$ jsou \emph{podmnožiny} $\{1,2\}$, tedy $\emptyset,\{1\},\{2\},\{1,2\}$. Číslo $2$ je prvek $\{1,2\}$, ne jeho podmnožina; správně je $\{2\}\in\Pot(\{1,2\})$.
+\end{reseni}
+
+\zad{Úloha 3\ \ (4 b)}{Počty prvků.}
+\begin{reseni}
+(a) \textbf{2 b.} $\{a,\{a\},\{a,a\},\emptyset,\{\emptyset\},\{\{a\}\}\}$: $\{a,a\}=\{a\}$. Prvky: $a$, $\{a\}$, $\emptyset$, $\{\emptyset\}$, $\{\{a\}\}$ $\to$ \textbf{5 prvků} (1~b za počet, 1~b za výčet).\\
+(b) \textbf{1 b.} $|\Pot(\{1\})|=2$, $|\Pot(\Pot(\{1\}))|=2^2=4$.\\
+(c) \textbf{1 b.} $|A\times B|=3\cdot2=6$, $|A\cup B|=3+2-1=4$.
+\end{reseni}
+
+\zad{Úloha 4\ \ (4 b)}{Kvantifikátory a negace.}
+\begin{reseni}
+\textbf{2 b:} $\forall a\in A\ \exists b\in B:\ a<b$.\\
+\textbf{2 b:} negace $\exists a\in A\ \forall b\in B:\ a\ge b$, slovně: „v $A$ existuje číslo, které je větší nebo rovno všem číslům z $B$“.
+
+\smallskip
+{\sffamily\footnotesize\color{muted}Postup: negace převrátí \emph{oba} kvantifikátory (zachová pořadí) a znegovanou vlastnost $a<b$ změní na $a\ge b$. Za neúplnou negaci (např.\ jen první kvantifikátor, nebo $a>b$) se strhává.}
+\end{reseni}
+
+\zad{Úloha 5\ \ (4 b)}{Rovnosti množin.}
+\begin{reseni}
+\textbf{(a) (2 b)} Pro libovolné $x$:
+$x\in(A\cup B)\setminus C\Leftrightarrow(x\in A\lor x\in B)\land x\notin C\Leftrightarrow(x\in A\land x\notin C)\lor(x\in B\land x\notin C)\Leftrightarrow x\in(A\setminus C)\cup(B\setminus C)$. \hfill$\blacksquare$
+
+\textbf{(b) (2 b)} Protipříklad: $A=B=C=\{1\}$. Pak $A\setminus(B\setminus C)=\{1\}\setminus\emptyset=\{1\}$, ale $(A\setminus B)\setminus C=\emptyset\setminus\{1\}=\emptyset$. Rovnost tedy neplatí. (Stačí \emph{jedna} konkrétní trojice množin, ale musí ověřit obě strany.)
+\end{reseni}
+
+\vspace{1.2em}
+\begin{tip}
+{\sffamily\bfseries\small Orientační hodnocení}\par\vspace{2pt}
+\textbf{18–20 b} výborně, \textbf{14–17 b} dobře (zopakuj, co ti nešlo), \textbf{pod 14 b} projdi poznámky \textit{03–05} a zkus část 6 znovu za pár dní.
+\end{tip}
+
+\end{document}
