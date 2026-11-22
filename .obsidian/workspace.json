@@ -11,17 +11,42 @@
             "id": "ca4bbd58ef2d83f2",
             "type": "leaf",
             "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graf"
+            }
+          },
+          {
+            "id": "6a5023d59ee149ea",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "studijni-materialy/matematicke-dovednosti/predmet.md",
-                "mode": "preview",
+                "file": "studijni-materialy/matematicke-dovednosti/poznamky/03 - Množiny - zápis a pojmy.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "predmet"
+              "title": "03 - Množiny - zápis a pojmy"
+            }
+          },
+          {
+            "id": "39122e823c8b9ab5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "studijni-materialy/matematicke-dovednosti/poznamky/02 - Kvantifikátory.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "02 - Kvantifikátory"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -99,7 +124,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "studijni-materialy/matematicke-dovednosti/predmet.md",
+                "file": "studijni-materialy/matematicke-dovednosti/poznamky/03 - Množiny - zápis a pojmy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -174,12 +199,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 337.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Otevřít rychlé přepínání": false,
       "graph:Otevřít graf": false,
+      "switcher:Otevřít rychlé přepínání": false,
       "canvas:Vytvořit nový canvas": false,
       "daily-notes:Otevřít dnešní poznámku": false,
       "templates:Vložit šablonu": false,
@@ -187,10 +212,18 @@
       "bases:Vytvořit novou základnu": false
     }
   },
-  "active": "ca4bbd58ef2d83f2",
+  "active": "6a5023d59ee149ea",
   "lastOpenFiles": [
+    "studijni-materialy/matematicke-dovednosti/poznamky/02 - Kvantifikátory.md",
+    "Bez názvu.canvas",
+    "studijni-materialy/matematicke-dovednosti/predmet.md",
+    "studijni-materialy/matematicke-dovednosti/poznamky/06 - Pasti a tahák na test.md",
+    "studijni-materialy/matematicke-dovednosti/poznamky/00 - Přehled.md",
+    "studijni-materialy/matematicke-dovednosti/poznamky/03 - Množiny - zápis a pojmy.md",
+    "studijni-materialy/matematicke-dovednosti/poznamky/04 - Podmnožiny a množinové operace.md",
+    "studijni-materialy/matematicke-dovednosti/poznamky/05 - Potenční množina a nekonečná sjednocení.md",
+    "artcraft-launcher-0.19.2-linux-x86_64.deb",
     "studijni-materialy/matematicke-dovednosti/predmet.pdf",
-    "studijni-materialy/matematicke-dovednosti/zapocet.md",
-    "studijni-materialy/matematicke-dovednosti/predmet.md"
+    "studijni-materialy/matematicke-dovednosti/zapocet.md"
   ]
 }
