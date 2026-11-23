@@ -79,13 +79,13 @@
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 \makeatletter
 \renewcommand{\section}{\@startsection{section}{1}{0pt}{1.2ex plus .3ex}{0.7ex}{\sffamily\bfseries\Large\color{accent}}}
-\renewcommand{\subsection}{\@startsection{subsection}{2}{0pt}{2.2ex plus .3ex minus .1ex}{0.8ex}{\sffamily\bfseries\large\color{accent}}}
+\renewcommand{\subsection}{\Needspace{7\baselineskip}\@startsection{subsection}{2}{0pt}{2.2ex plus .3ex minus .1ex}{0.8ex}{\sffamily\bfseries\large\color{accent}}}
 \makeatother
 \newcommand{\kap}[1]{\clearpage\section{#1}\markboth{\thesection\ #1}{\thesection\ #1}}
 \newcommand{\kapbez}[1]{\clearpage\section*{#1}\markboth{#1}{#1}}
 
 % ---------- rámečky ----------
-\tcbset{boxbase/.style={enhanced,breakable,arc=3pt,boxrule=0.7pt,left=9pt,right=9pt,top=5pt,bottom=6pt,
+\tcbset{boxbase/.style={enhanced,arc=3pt,boxrule=0.7pt,left=9pt,right=9pt,top=5pt,bottom=6pt,
   before skip=9pt,after skip=7pt,fonttitle=\sffamily\bfseries\small,toptitle=2.5pt,bottomtitle=2.5pt}}
 
 \newtcolorbox{defin}[1]{boxbase,colback=accentlight,colframe=accent,coltitle=white,colbacktitle=accent,title={Definice: #1}}
@@ -117,7 +117,7 @@
 \newcommand{\nap}[1]{\par\smallskip{\small\itshape\color{muted}Nápověda: #1}\par}
 
 % ---------- řešení ----------
-\newtcolorbox{reseni}[2]{enhanced,breakable,arc=3pt,boxrule=0pt,colback=goodlight,left=10pt,right=8pt,top=5pt,bottom=5pt,
+\newtcolorbox{reseni}[2]{enhanced,arc=3pt,boxrule=0pt,colback=goodlight,left=10pt,right=8pt,top=5pt,bottom=5pt,
   before skip=7pt,after skip=4pt,borderline west={2.4pt}{0pt}{good},
   before upper={\phantomsection\label{sol:#2}{\sffamily\bfseries\small Úloha #1}\hfill{\sffamily\footnotesize\color{muted}zpět na str.~\pageref{ul:#2}}\par\smallskip}}
 \newcommand{\anchor}[1]{\label{ul:#1}}
@@ -182,7 +182,7 @@
 Při přípravě jsem ověřil všechna řešení a narazil na dvě nepřesnosti. \textbf{Cv.\ 6.4c:} množina $\{x,y,z\}\cup\{z,y,x\}\cup\{x,\{y,z\}\}\cup\{\{y\}\cup\{z\}\}$ má \textbf{4} prvky ($x,y,z,\{y,z\}$), v řešení stojí 3, ačkoli jsou tam vyjmenovány čtyři. \textbf{Cv.\ 5.4d:} zápis $(\exists x\in A)\lor(\exists x\in B)$ chybí vlastnost za dvojtečkou, bezpečnější je $\exists x\,(x\in A\lor x\in B)$. Na testu piš tu správnou verzi.
 \end{past}
 
-\clearpage
+\vspace{4pt}
 \markboth{Obsah}{Obsah}
 {\sffamily\bfseries\Large\color{accent} Obsah}\par\vspace{2pt}
 \begin{multicols}{2}
