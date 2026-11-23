@@ -1,0 +1,1578 @@
+\documentclass[10pt,a4paper]{article}
+% Preambule: Matematické dovednosti – Množiny (XeLaTeX)
+\usepackage[a4paper,left=2.0cm,right=2.0cm,top=2.2cm,bottom=2.0cm,headheight=14pt,footskip=1.0cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{polyglossia}
+\setdefaultlanguage{czech}
+\setmainfont{Latin Modern Roman}
+\setmathfont{Latin Modern Math}
+\setsansfont{Inter}[Scale=0.92]
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{accent}{HTML}{1F5FAF}
+\definecolor{accentlight}{HTML}{EAF2FC}
+\definecolor{muted}{HTML}{6B7280}
+\definecolor{rulegray}{HTML}{B8C2D0}
+\definecolor{rulelight}{HTML}{DDE3EC}
+\definecolor{good}{HTML}{1F7A3E}
+\definecolor{goodlight}{HTML}{EAF6EC}
+\definecolor{warn}{HTML}{B3261E}
+\definecolor{warnlight}{HTML}{FDECEA}
+\definecolor{amber}{HTML}{8A5A00}
+\definecolor{amberlight}{HTML}{FFF6DD}
+\definecolor{gray}{HTML}{6B7280}
+\definecolor{graylight}{HTML}{F1F2F4}
+\definecolor{viol}{HTML}{5B4FC4}
+\definecolor{viollight}{HTML}{F1EFFD}
+
+\color{ink}
+\linespread{1.10}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\raggedright
+\setlist{nosep}
+\setlength{\columnsep}{1cm}
+\setcounter{secnumdepth}{2}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\sffamily\footnotesize\color{muted}Matematické dovednosti · příprava na test z množin}
+\fancyhead[R]{\sffamily\footnotesize\color{muted}\leftmark}
+\fancyfoot[C]{\sffamily\footnotesize\color{muted}\thepage}
+
+% ---------- zkratky ----------
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Pot}{\mathcal P}
+\newcommand{\pr}{\mathrel{\mid}}
+\newcommand{\nepr}{\mathrel{\nmid}}
+\newcommand{\sm}{\setminus}
+\newcommand{\mn}[1]{\left\{#1\right\}}
+\newcommand{\sv}[2]{\left\{#1\ \middle|\ #2\right\}} % {x | ...}
+\newcommand{\Ano}{\textcolor{good}{\sffamily\bfseries ano}\xspace}
+\newcommand{\Ne}{\textcolor{warn}{\sffamily\bfseries ne}\xspace}
+\newcommand{\pravda}{\textcolor{good}{\sffamily\bfseries pravda}\xspace}
+\newcommand{\nepravda}{\textcolor{warn}{\sffamily\bfseries nepravda}\xspace}
+\newcommand{\qed}{\hfill$\blacksquare$}
+
+% ---------- kapitoly ----------
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0pt}{1.2ex plus .3ex}{0.7ex}{\sffamily\bfseries\Large\color{accent}}}
+\renewcommand{\subsection}{\Needspace{7\baselineskip}\@startsection{subsection}{2}{0pt}{2.2ex plus .3ex minus .1ex}{0.8ex}{\sffamily\bfseries\large\color{accent}}}
+\makeatother
+\newcommand{\kap}[1]{\clearpage\section{#1}\markboth{\thesection\ #1}{\thesection\ #1}}
+\newcommand{\kapbez}[1]{\clearpage\section*{#1}\markboth{#1}{#1}}
+
+% ---------- rámečky ----------
+\tcbset{boxbase/.style={enhanced,arc=3pt,boxrule=0.7pt,left=9pt,right=9pt,top=5pt,bottom=6pt,
+  before skip=9pt,after skip=7pt,fonttitle=\sffamily\bfseries\small,toptitle=2.5pt,bottomtitle=2.5pt}}
+
+\newtcolorbox{defin}[1]{boxbase,colback=accentlight,colframe=accent,coltitle=white,colbacktitle=accent,title={Definice: #1}}
+
+\newtcolorbox{tvrz}[1]{boxbase,colback=graylight,colframe=gray,coltitle=white,colbacktitle=gray,title={Tvrzení: #1}}
+\newtcolorbox{klic}[1]{boxbase,colback=warnlight,colframe=warn,coltitle=white,colbacktitle=warn,title={\,$\star$\ Klíčové tvrzení: #1}}
+\newtcolorbox{past}[1]{boxbase,colback=amberlight,colframe=amber,coltitle=white,colbacktitle=amber,title={$\triangle$ Past: #1}}
+\newtcolorbox{pozn}[1]{boxbase,colback=amberlight,colframe=amber!60!white,coltitle=amber,colbacktitle=amberlight,title={#1}}
+\newtcolorbox{vzor}[1]{boxbase,colback=goodlight,colframe=good,coltitle=white,colbacktitle=good,title={Vzorový příklad #1}}
+
+\newcommand{\jak}{\par\smallskip{\sffamily\bfseries\small\color{good}Jak na to přijít}\par\vspace{1pt}}
+\newcommand{\zapis}{\par\smallskip\noindent{\color{good}\hrulefill}\par\vspace{1pt}{\sffamily\bfseries\small\color{good}Zápis do písemky}\par\vspace{1pt}}
+\newcommand{\zkouska}{\par\smallskip{\sffamily\bfseries\small\color{good}Zkouška:}\ }
+
+% ---------- úlohy s mřížkou ----------
+\newcommand{\mrizka}[1]{%
+  \par\vspace{4pt}
+  \begin{tcolorbox}[enhanced,height=#1,colback=white,colframe=rulegray,boxrule=0.5pt,arc=2pt,left=0pt,right=0pt,top=0pt,bottom=0pt,before skip=0pt,after skip=2pt,
+    underlay={\begin{scope}\clip (frame.south west) rectangle (frame.north east);
+      \draw[rulelight,line width=0.35pt,step=5mm,shift={(frame.south west)}] (0,0) grid ($(frame.north east)-(frame.south west)$);
+    \end{scope}}]
+  \end{tcolorbox}\par}
+
+\newtcolorbox{uloha}[3]{enhanced,breakable=false,arc=3pt,boxrule=0.7pt,colback=viollight,colframe=viol!70!white,
+  left=9pt,right=9pt,top=5pt,bottom=6pt,before skip=9pt,after skip=7pt,
+  coltitle=viol,colbacktitle=viollight,fonttitle=\sffamily\bfseries\small,
+  title={Úloha #1\hfill\mdseries\footnotesize #2\ \ $\to$ řešení (str.~\pageref{sol:#3})},
+  before upper={\phantomsection\label{ul:#3}}}
+\newcommand{\nap}[1]{\par\smallskip{\small\itshape\color{muted}Nápověda: #1}\par}
+
+% ---------- řešení ----------
+\newtcolorbox{reseni}[2]{enhanced,arc=3pt,boxrule=0pt,colback=goodlight,left=10pt,right=8pt,top=5pt,bottom=5pt,
+  before skip=7pt,after skip=4pt,borderline west={2.4pt}{0pt}{good},
+  before upper={\phantomsection\label{sol:#2}{\sffamily\bfseries\small Úloha #1}\hfill{\sffamily\footnotesize\color{muted}zpět na str.~\pageref{ul:#2}}\par\smallskip}}
+\newcommand{\anchor}[1]{\label{ul:#1}}
+
+% ---------- seznamy ----------
+\newenvironment{pol}{\begin{enumerate}[label=(\alph*),leftmargin=2.0em,itemsep=2pt,topsep=3pt]}{\end{enumerate}}
+\newenvironment{dvasl}{\begin{multicols}{2}\begin{enumerate}[label=(\alph*),leftmargin=2.0em,itemsep=2pt,topsep=2pt]}{\end{enumerate}\end{multicols}}
+\newenvironment{odrazky}{\begin{itemize}[leftmargin=1.3em,itemsep=2pt,topsep=3pt]}{\end{itemize}}
+
+\begin{document}
+{\sffamily\bfseries\fontsize{27}{31}\selectfont\color{accent} Množiny}\par
+{\sffamily\large\color{muted} Matematické dovednosti (MFF UK, ZS 2026/27) · příprava na test}\par
+\vspace{4pt}
+{\small Cvičení 5 a 6: zápis množin, prvky a $\emptyset$, vztahy a operace, potenční množina, indexovaná sjednocení a průniky. Vysvětlení od nuly, vzorové příklady, úlohy s mřížkou na psaní a řešení vzadu, k tomu kvíz, dvě zkušební písemky na 20 minut a tahák.}\par
+\vspace{2pt}{\color{rulegray}\rule{\linewidth}{0.6pt}}\par
+
+\begin{pozn}{Jak vypadá test (co vím z podkladů)}
+\begin{odrazky}
+  \item Podle \texttt{predmet.md} se píší \textbf{4 krátké písemky} na začátku cvičení, každá \textbf{15--20 minut} a \textbf{max.\ 20 bodů}. Zápočet: aspoň 40 ze 80 bodů. Tvůj dosavadní stav je 18 ze 40, takže z posledních dvou písemek dohromady potřebuješ aspoň \textbf{22 bodů}. Test z množin je jedna z nich.
+  \item \textbf{Přesné zadání testu v podkladech není.} Rozsah (cvičení 5 a 6) a typy úloh jsem odvodil ze zadání těch cvičení a z tvých poznámek. Formát si případně ověř u cvičící (Jana Maxová).
+  \item Počítej s tím, že jedna úloha trvá 3--4 minuty. Proto je tu spousta krátkých úloh na tempo a nic, co by vyžadovalo dlouhou teorii.
+\end{odrazky}
+\end{pozn}
+
+\subsection*{Co se v úlohách opakuje}
+\small
+\begin{tabular}{@{}p{0.5cm}p{7.9cm}p{2.9cm}p{2.9cm}@{}}
+\textbf{\#} & \textbf{Typ úlohy} & \textbf{Kde v cvičení} & \textbf{Kapitola}\\\midrule
+1 & slovní popis $\to$ množinový zápis (výčet, vlastnost, předpis) & 5.3, 5.7, 6.1 & 2\\
+2 & pravda/nepravda o $\in$, $\subseteq$, $\emptyset$, $\{\emptyset\}$ & 5.6 & 3\\
+3 & kolik prvků má vnořená množina, které to jsou & 6.4, 6.2 & 3, 7\\
+4 & vztah množin $\leftrightarrow$ kvantifikátory ($\subseteq$, $=$, $\cap=\emptyset$) & 5.1, 5.2, 5.4 & 4\\
+5 & rovnost množinových výrazů, důkaz nebo protipříklad & 5.8, 1.8 & 5\\
+6 & velikosti $|A\cup B|$, $|A\times B|$, $|\mathcal P(A)|$ & 5.5 & 5, 6\\
+7 & potenční množina a inkluze mezi množinami & 6.3, 6.5 & 6\\
+8 & indexovaná sjednocení a průniky & 6.2, 6.5 & 7\\
+\end{tabular}
+\normalsize
+
+\subsection*{Jak s tímto sešitem pracovat}
+\begin{odrazky}
+  \item \textcolor{accent}{\textbf{Modré rámečky}} jsou definice (na testu je chtějí přesně). \textcolor{gray}{\textbf{Šedé}} jsou tvrzení. \textcolor{warn}{\textbf{Červené se $\star$}} jsou klíčová tvrzení, u kterých umět i důkaz. \textcolor{amber}{\textbf{Oranžové se $\triangle$}} jsou pasti.
+  \item \textcolor{good}{\textbf{Zelené vzorové příklady}} mají dvě části: \emph{Jak na to přijít} (úvaha) a \emph{Zápis do písemky} (jak to napsat, aby to dostalo body). Vzory si nejdřív zakryj a zkus je vyřešit sám.
+  \item \textcolor{viol}{\textbf{Fialové úlohy}} mají mřížku na psaní a odkaz na řešení. Značka $\blacklozenge$ Cv.\ x.y znamená úlohu přímo ze zadaných cvičení, bez ní jde o nové úlohy téhož typu.
+  \item Řešení otevři až po vlastním pokusu. Kapitola 8 je kvíz, kapitola 9 jsou dvě zkušební písemky na čas, kapitola 10 je tahák na jednu stránku.
+\end{odrazky}
+
+\subsection*{Doporučený postup na dnešní večer (asi 3 hodiny)}
+\small
+\begin{tabular}{@{}p{3.1cm}p{13.4cm}@{}}
+\textbf{15 min} & kapitola 1 (logika: jen negace a pravidlo „$\forall$ s $\Rightarrow$, $\exists$ s $\land$“)\\
+\textbf{35 + 30 min} & kapitoly 2 a 3: zápis množin, $\emptyset$ vs.\ $\{\emptyset\}$, počítání prvků (to je těžiště cvičení 5 a 6)\\
+\textbf{20 + 30 min} & kapitoly 4 a 5: vztahy mezi množinami, operace, důkazy rovností\\
+\textbf{25 + 25 min} & kapitoly 6 a 7: potenční množina, indexovaná sjednocení a průniky\\
+\textbf{15 min} & kvíz (kapitola 8)\\
+\textbf{20 min + 10 min} & zkušební písemka A \textbf{na čas}, pak vyhodnocení podle bodování\\
+\textbf{ráno} & tahák (kapitola 10), případně písemka B jako rozcvička\\
+\end{tabular}
+\normalsize
+
+\begin{past}{Dvě drobnosti ve vzorových řešeních kurzu}
+Při přípravě jsem ověřil všechna řešení a narazil na dvě nepřesnosti. \textbf{Cv.\ 6.4c:} množina $\{x,y,z\}\cup\{z,y,x\}\cup\{x,\{y,z\}\}\cup\{\{y\}\cup\{z\}\}$ má \textbf{4} prvky ($x,y,z,\{y,z\}$), v řešení stojí 3, ačkoli jsou tam vyjmenovány čtyři. \textbf{Cv.\ 5.4d:} zápis $(\exists x\in A)\lor(\exists x\in B)$ chybí vlastnost za dvojtečkou, bezpečnější je $\exists x\,(x\in A\lor x\in B)$. Na testu piš tu správnou verzi.
+\end{past}
+
+\vspace{4pt}
+\markboth{Obsah}{Obsah}
+{\sffamily\bfseries\Large\color{accent} Obsah}\par\vspace{2pt}
+\begin{multicols}{2}
+\small
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{}
+\tableofcontents
+\end{multicols}
+
+\subsection*{Slovníček značení}
+\small
+\begin{tabular}{@{}p{3.6cm}p{8.2cm}p{4.2cm}@{}}
+\textbf{Značka} & \textbf{Co znamená} & \textbf{Příklad}\\\midrule
+$a\in A$, $a\notin A$ & $a$ je / není prvkem množiny $A$ & $2\in\{1,2,3\}$\\
+$A\subseteq B$, $A\subsetneq B$ & každý prvek $A$ je v $B$; navíc $A\neq B$ & $\{1\}\subsetneq\{1,2\}$\\
+$\emptyset=\{\}$ & prázdná množina, $\forall x: x\notin\emptyset$ & $|\emptyset|=0$\\
+$|A|$ & počet (různých) prvků konečné množiny & $|\{1,1,2\}|=2$\\
+$\N$, $\N_0$, $\Z$ & $\{1,2,3,\dots\}$; $\N\cup\{0\}$; celá čísla & v kurzu $0\notin\N$\\
+$x\pr y$ & $x$ dělí $y$: $\exists k\in\Z: y=kx$ & $3\pr 12$, $5\nepr 12$\\
+$A\cup B$, $A\cap B$, $A\sm B$ & sjednocení, průnik, rozdíl & viz kapitola 5\\
+$A\times B$ & uspořádané dvojice $(a,b)$, $a\in A$, $b\in B$ & $|A\times B|=|A||B|$\\
+$\mathcal P(A)=2^A$ & potenční množina: všechny podmnožiny $A$ & $|\mathcal P(A)|=2^{|A|}$\\
+$\binom{A}{k}$ & množina všech $k$-prvkových podmnožin $A$ & $\left|\binom{A}{k}\right|=\binom nk$\\
+$\bigcup_{i}A_i$, $\bigcap_{i}A_i$ & sjednocení / průnik přes indexy & $\exists i$ / $\forall i$\\
+$\forall$, $\exists$, $\neg$ & pro každé, existuje, negace & kapitola 1\\
+\end{tabular}
+\normalsize
+
+\kap{Logika jako nástroj}
+
+Každé tvrzení o množinách se nakonec přepisuje na výrok o prvcích. Deset minut logiky proto ušetří většinu chyb v dalších kapitolách. Vezmi si z ní jen to, co se tu skutečně používá.
+
+\subsection{Spojky a množiny}
+
+Množinové operace jsou logické spojky, jen napsané o patro výš:
+
+\begin{center}
+\begin{tabular}{@{}lcl@{}}
+$x\in A\cap B$ & $\Longleftrightarrow$ & $x\in A\ \land\ x\in B$\\
+$x\in A\cup B$ & $\Longleftrightarrow$ & $x\in A\ \lor\ x\in B$\\
+$x\in A\sm B$ & $\Longleftrightarrow$ & $x\in A\ \land\ x\notin B$\\
+$A\subseteq B$ & $\Longleftrightarrow$ & $\forall x\,(x\in A\Rightarrow x\in B)$\\
+$A=B$ & $\Longleftrightarrow$ & $\forall x\,(x\in A\Leftrightarrow x\in B)$
+\end{tabular}
+\end{center}
+
+\begin{defin}{Implikace a negace}
+Implikace $p\Rightarrow q$ je nepravdivá \textbf{právě v jediném případě}: $p$ platí a $q$ neplatí. Platí
+\[
+\neg(p\land q)\equiv\neg p\lor\neg q,\qquad
+\neg(p\lor q)\equiv\neg p\land\neg q,\qquad
+\neg(p\Rightarrow q)\equiv p\land\neg q .
+\]
+\end{defin}
+
+Pamatuj si: negace implikace \emph{není implikace}. Je to „předpoklad platí \textbf{a přesto} závěr neplatí“. Pokud $p$ neplatí, je $p\Rightarrow q$ pravdivá vždy („z nepravdy plyne cokoli“). Právě tohle se vrací u prázdné množiny.
+
+\subsection{Kvantifikátory}
+
+\begin{defin}{Kvantifikátory}
+$\forall x\in M: V(x)$ čteme „pro \emph{každé} $x$ z $M$ platí $V(x)$“. $\exists x\in M: V(x)$ čteme „\emph{existuje} $x$ z $M$, pro které platí $V(x)$“. Negace převrátí kvantifikátor a znegovanou vlastnost nechá uvnitř:
+\[
+\neg\big(\forall x\in M: V(x)\big)\equiv\exists x\in M:\neg V(x),\qquad
+\neg\big(\exists x\in M: V(x)\big)\equiv\forall x\in M:\neg V(x).
+\]
+U víc kvantifikátorů za sebou se převrátí všechny a pořadí zůstane.
+\end{defin}
+
+\begin{klic}{Zlaté pravidlo omezeného kvantifikátoru}
+Chceš-li říct něco jen o prvcích s nějakou vlastností $P$, platí:
+\[
+\boxed{\ \forall\ \text{se spojuje s}\ \Rightarrow\ ,\qquad \exists\ \text{se spojuje s}\ \land\ }
+\]
+Tedy „každé $x\in M$ s vlastností $P$ má vlastnost $V$“ je $\forall x\in M:(P(x)\Rightarrow V(x))$ a „existuje $x\in M$ s vlastností $P$ a $V$“ je $\exists x\in M:(P(x)\land V(x))$. Kdybys u $\forall$ napsal $\land$, tvrdil bys, že \emph{každé} $x\in M$ má vlastnost $P$.
+\end{klic}
+
+\begin{tvrz}{Prázdná množina a kvantifikátory}
+Pro $M=\emptyset$ a libovolnou vlastnost $V$ je $\forall x\in\emptyset: V(x)$ \textbf{vždy pravdivé} a $\exists x\in\emptyset: V(x)$ \textbf{vždy nepravdivé}.\\
+\emph{Proč:} Výrok $\forall x\in\emptyset: V(x)$ znamená $\forall x\,(x\in\emptyset\Rightarrow V(x))$. Předpoklad $x\in\emptyset$ není splněn pro žádné $x$, takže implikace nemá jak být porušena. Výrok $\exists x\in\emptyset: V(x)$ by vyžadoval prvek v $\emptyset$, a ten není.
+\end{tvrz}
+
+\begin{past}{Tři klasické chyby}
+\textbf{(1)} „Žádný student nezíská zápočet“ znamená, že \emph{všichni} zápočet získají ($\neg\exists$ nezíská). Není to totéž co „ne každý získá“ ($\exists$ nezíská). \textbf{(2)} Pořadí kvantifikátorů záleží: $\forall n\,\exists m: m>n$ je pravda v $\N$ (volba $m$ smí záviset na $n$), $\exists m\,\forall n: m>n$ je nepravda. \textbf{(3)} Vždy napiš, přes jakou množinu kvantifikuješ ($\forall x\in\Z$, ne jen $\forall x$).
+\end{past}
+
+\begin{vzor}{1.1}
+Zapište kvantifikátory a znegujte: „Každé sudé číslo z množiny $A$ leží v množině $B$.“
+\jak
+Slovo „každé“ je $\forall$. „Sudé“ je podmínka na prvek, takže podle zlatého pravidla přijde implikace. Negace pak převrátí $\forall$ na $\exists$ a znegovaná implikace je konjunkce.
+\zapis
+\[
+\forall a\in A:\ (2\pr a\Rightarrow a\in B).
+\]
+Negace: $\exists a\in A:\ (2\pr a\ \land\ a\notin B)$, slovně „v $A$ existuje sudé číslo, které není v $B$“.
+\zkouska Pro $A=\{2,3\}$, $B=\{3\}$ je původní výrok nepravdivý (číslo $2$ je sudé a v $B$ není), negace je pravdivá s $a=2$. \checkmark
+\end{vzor}
+
+\begin{uloha}{1.1}{nové}{u11}
+Znegujte a zapište výsledek bez negace před kvantifikátorem:
+\begin{pol}
+  \item $\forall x\in A: x>3$
+  \item $\exists x\in A\ \forall y\in B: x<y$
+  \item $\forall x\in A:\ (2\pr x\Rightarrow x\in B)$
+  \item $A\subseteq B\ \land\ B\nsubseteq C$
+\end{pol}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{1.2}{nové}{u12}
+Nechť $M=\emptyset$. Rozhodněte, zda je výrok pravdivý, a zdůvodněte jednou větou:
+\begin{pol}
+  \item $\forall x\in M: x\neq x$
+  \item $\exists x\in M: x=x$
+  \item $\forall x\in M:\ (x\in\N\land x\notin\N)$
+  \item $\neg\big(\exists x\in M: x>0\big)$
+  \item $\big(\forall x\in M: V(x)\big)\Rightarrow\big(\exists x\in M: V(x)\big)$ (pro libovolné $V$)
+\end{pol}
+\mrizka{4.0cm}
+\end{uloha}
+
+\kap{Zápis množin}
+
+Nejčastější typ úlohy ve cvičeních 5 a 6: dostaneš slovní popis a máš ho zapsat množinovým zápisem. Tady se to učí systematicky.
+
+\subsection{Co je množina}
+
+\begin{defin}{Množina a prvek}
+\textbf{Množina} je soubor navzájem rozlišitelných objektů, jejím \textbf{prvkem} je každý z nich. Množina je určena \emph{jen tím, jaké prvky obsahuje}:
+\[
+A=B\iff\forall x\,(x\in A\Leftrightarrow x\in B).
+\]
+Na pořadí ani na opakování prvků nezáleží: $\{a,b\}=\{b,a\}=\{a,a,b,b,b\}$. Je-li $A$ konečná, $|A|$ je počet jejích \emph{různých} prvků.
+\end{defin}
+
+V kurzu platí $\N=\{1,2,3,\dots\}$ (bez nuly) a $\N_0=\N\cup\{0\}$. Pokud zadání neříká jinak, nepiš $0\in\N$.
+
+\subsection{Tři způsoby zápisu}
+
+\begin{defin}{Zápis množiny}
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item[\textbf{(A)}] \textbf{Výčtem} (konečné množiny, nebo s „\dots“, když je vzor zřejmý): $A=\{1,3,5,7,9\}$.
+  \item[\textbf{(B)}] \textbf{Vydělením z jiné množiny vlastností:} pro množinu $X$ a výrok $V(x)$ je $B=\{x\in X\mid V(x)\}$, čteno „množina všech $x$ z $X$, pro která platí $V(x)$“. Svislá čára znamená „takové, že“.
+  \item[\textbf{(C)}] \textbf{Předpisem (obor hodnot funkce):} $\{f(x)\mid x\in X\}=\{y\mid \exists x\in X:\ y=f(x)\}$.
+\end{enumerate}
+\end{defin}
+
+Zápis (C) se převádí na (B) přes $\exists$ a obráceně. Například
+\[
+\{2k+1\mid k\in\N_0\}=\{n\in\N\mid \exists k\in\N_0:\ n=2k+1\}.
+\]
+Dobře napsaná množina má \textbf{před} svislou čárou, \emph{odkud} prvky beru, a \textbf{za} ní \emph{výrok}, který je pro každý prvek pravdivý nebo nepravdivý.
+
+\begin{pozn}{Recept na přepis slovního popisu}
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Odkud beru prvky?} Napiš to před svislou čáru: $\{x\in X\mid\dots\}$.
+  \item \textbf{Jakou vlastnost mají mít?} Najdi kvantifikační slova: „každý, libovolný, všechny“ $=\forall$; „některý, nějaký, existuje“ $=\exists$; „žádný“ $=\forall$ s negací.
+  \item \textbf{Zkus malý příklad}, třeba $X=\{1,2,3,4\}$, a ověř, že zápis dává, co čekáš.
+\end{enumerate}
+\end{pozn}
+
+\begin{past}{Tři nedorozumění, na která se píše špatně}
+\textbf{(1) „Libovolné“} je $\forall$, „některé“ je $\exists$. \textbf{(2) „Dvě různá čísla“:} vezmeš $x_1,x_2$ a \emph{musíš napsat} $x_1\neq x_2$, jinak může být $x_1=x_2$. \textbf{(3) Kam patří výsledek:} když výsledné prvky \emph{jsou} z $X$ (čísla z $X$, která\dots), piš $\{x\in X\mid\dots\}$. Když prvky vznikají výpočtem (rozdíly, součty, druhé mocniny), piš $\{f(\dots)\mid\dots\}$ nebo vezmi širší množinu ($\Z$) před čáru. U každého parametru $k$ napiš, odkud běží.
+\end{past}
+
+\begin{vzor}{2.1\quad(Cv.~5.3)}
+Najděte co nejvíc způsobů, jak zapsat množinu $L$ všech lichých přirozených čísel.
+\jak
+Liché číslo je o jedničku větší než sudé: $2k+1$ pro $k\ge0$, nebo o jedničku menší než sudé kladné: $2n-1$ pro $n\ge1$. Dá se také říct negativně: číslo není dělitelné dvěma. Každý zápis si ověř na prvních prvcích. Pozor, jak se liší dolní mez $k\in\N_0$ a $n\in\N$.
+\zapis
+\begin{align*}
+L&=\{1,3,5,7,\dots\}=\{2n-1\mid n\in\N\}=\{2n+1\mid n\in\N_0\}\\
+&=\{n\in\N\mid 2\nepr n\}=\{n\in\N\mid \exists k\in\N_0:\ n=2k+1\}\\
+&=\{n\in\N\mid n\equiv1\pmod 2\}=\{n\in\N\mid \forall k\in\N:\ 2k\neq n\}.
+\end{align*}
+\zkouska $n=1$: $2\cdot1-1=1$, $n=2$: $3$, $n=3$: $5$. \checkmark
+\end{vzor}
+
+\begin{vzor}{2.2\quad(Cv.~6.1a, 6.1c)}
+Nechť $X,Y,Z\subseteq\N$. Zapište (a) množinu $A$ všech čísel z $X$ dělitelných \emph{některým} číslem z $Y$, (b) množinu $C$ všech čísel z $Z$ větších než \emph{libovolné} číslo z $Y$.
+\jak
+Výsledná čísla \emph{jsou} z $X$ (resp.\ z $Z$), proto je beru odtamtud a za čáru dám vlastnost. „Některým“ je $\exists y\in Y$, „libovolné“ je $\forall y\in Y$.
+\zapis
+\[
+A=\{x\in X\mid \exists y\in Y:\ y\pr x\},\qquad
+C=\{z\in Z\mid \forall y\in Y:\ z>y\}.
+\]
+\zkouska $X=\{4,5,9\}$, $Y=\{2,3\}$: $4$ dělí $2$, $9$ dělí $3$, $5$ nikdo, takže $A=\{4,9\}$. $Z=\{2,3,4\}$, $Y=\{1,2\}$: $3>1,2$ a $4>1,2$, ale $2>2$ neplatí, takže $C=\{3,4\}$. \checkmark\ Pro $Y=\emptyset$ je $C=Z$ (prázdné $\forall$ je pravdivé).
+\end{vzor}
+
+\begin{vzor}{2.3\quad(Cv.~6.1d)}
+Zapište množinu $D$ všech rozdílů dvou \emph{různých} čísel z $X\subseteq\N$.
+\jak
+Rozdíl dvou přirozených čísel nemusí být přirozené číslo, výsledek tedy \emph{není} podmnožina $X$. Vezmu dva prvky $x_1,x_2\in X$ a napíšu předpis. Slovo „různých“ musí být vidět.
+\zapis
+\[
+D=\{x_1-x_2\mid x_1,x_2\in X\ \land\ x_1\neq x_2\}=\{d\in\Z\mid\exists x_1,x_2\in X:\ (x_1\neq x_2\land d=x_1-x_2)\}.
+\]
+\zkouska $X=\{1,3,4\}$: rozdíly $\pm2,\ \pm3,\ \pm1$, tedy $D=\{-3,-2,-1,1,2,3\}$. Číslo $0$ tam není, protože bereme různá čísla. \checkmark
+\end{vzor}
+
+\begin{vzor}{2.4\quad(Cv.~5.7d, 5.7e)}
+Zapište množinu $D$ prvočísel a množinu $E$ přirozených čísel, která mají právě tři přirozené dělitele.
+\jak
+Prvočíslo je přirozené číslo s právě dvěma děliteli ($1$ a ono samo). Počet dělitelů je počet prvků množiny $\{d\in\N\mid d\pr x\}$, takže stačí dát tuto množinu do absolutních hodnot a porovnat s číslem. Čísla s třemi děliteli jsou druhé mocniny prvočísel ($4,9,25,\dots$): dělitelé $p^2$ jsou $1,p,p^2$.
+\zapis
+\[
+D=\{p\in\N\mid |\{d\in\N\mid d\pr p\}|=2\},\qquad
+E=\{x\in\N\mid |\{d\in\N\mid d\pr x\}|=3\}=\{p^2\mid p\in D\}.
+\]
+Alternativa pro prvočísla: $D=\{p\in\N\mid p>1\ \land\ \forall d\in\N:\ (d\pr p\Rightarrow d=1\lor d=p)\}$.
+\zkouska $x=4$: dělitelé $1,2,4$ jsou tři. $x=6$: dělitelé $1,2,3,6$ jsou čtyři, tedy $6\notin E$. \checkmark
+\end{vzor}
+
+\begin{uloha}{2.1}{$\blacklozenge$ Cv.~5.7a--c}{u21}
+Zapište množinovým zápisem (zkuste víc způsobů):
+\begin{pol}
+  \item $A$ = množina všech přirozených mocnin čísla $2$,
+  \item $B$ = množina všech celočíselných dělitelů čísla $n\in\Z$,
+  \item $C$ = množina celých čísel, která jsou druhou mocninou celého lichého čísla.
+\end{pol}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{2.2}{$\blacklozenge$ Cv.~5.7f--h}{u22}
+Zapište množinovým zápisem:
+\begin{pol}
+  \item $F$ = množina přirozených čísel, která mají právě $12345$ přirozených dělitelů,
+  \item $G$ = množina prvků, které leží v alespoň dvou z množin $M_1,M_2,\dots,M_n$,
+  \item $H$ = množina všech podmnožin množiny $M$, které mají sudý počet prvků.
+\end{pol}
+\nap{(g) $x$ leží v $M_i$ i v $M_j$ pro nějaká \emph{různá} $i,j$. Dá se zapsat i jako sjednocení průniků. (h) prvky $H$ jsou množiny.}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{2.3}{$\blacklozenge$ Cv.~6.1a--c}{u23}
+Nechť $X,Y,Z\subseteq\N$ jsou pevně dané. Zapište množinovým zápisem:
+\begin{pol}
+  \item množinu $A$ všech čísel z $X$, která jsou dělitelná některým číslem z $Y$,
+  \item množinu $B$ všech čísel z $Y$, která jsou součtem dvou různých čísel z $X$,
+  \item množinu $C$ všech čísel z $Z$, která jsou větší než libovolné číslo z $Y$.
+\end{pol}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{2.4}{$\blacklozenge$ Cv.~6.1d--f}{u24}
+Pro $X,Y,Z\subseteq\N$ zapište množinovým zápisem:
+\begin{pol}
+  \item množinu $D$ všech rozdílů dvou různých čísel z $X$,
+  \item množinu $E$ všech čísel, která jsou celočíselným násobkem nějakého čísla z $X$ nebo $Y$,
+  \item množinu $F$ všech druhých mocnin čísel z $X$, které jsou větší než libovolné číslo z $Y$, ale menší než některé číslo z $Z$.
+\end{pol}
+\nap{V (e) a (f) výsledek \emph{není} podmnožinou $X$ ani $Y$. V (e) napiš, odkud bereš násobitel $k$.}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{2.5}{nové}{u25}
+Zapište množiny \textbf{výčtem prvků}:
+\begin{pol}
+  \item $\{x\in\Z\mid x^2\le10\}$
+  \item $\{n\in\N\mid n\pr36\ \land\ n>4\}$
+  \item $\{k^2-k\mid k\in\{1,2,3,4,5\}\}$
+  \item $\{x\in\N\mid \exists k\in\N:\ x=k^2\ \land\ x<50\}$
+  \item $\{n\in\N\mid \forall k\in\N:\ (k\pr n\Rightarrow k\le2)\}$
+\end{pol}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{2.6}{nové}{u26}
+Nechť $X,Y,Z\subseteq\N$. Zapište množinovým zápisem množinu
+\begin{pol}
+  \item všech čísel z $X$, která jsou menší než \emph{každé} číslo z $Y$,
+  \item všech čísel z $Z$, která jsou součtem \emph{nějakého} čísla z $X$ a \emph{nějakého} čísla z $Y$,
+  \item všech čísel z $X$, jejichž \emph{všichni} přirození dělitelé leží v $Y$,
+  \item všech součinů dvou \emph{různých} čísel z $Y$,
+  \item všech čísel z $X$, která \emph{nejsou} dělitelná \emph{žádným} číslem z $Y$.
+\end{pol}
+\mrizka{5.0cm}
+\end{uloha}
+
+\kap{Prvky, prázdná množina, počet prvků}
+
+Tady se rozhoduje o spoustě bodů: rozlišit \emph{prvek} od \emph{podmnožiny}, nespletit $\emptyset$ s $\{\emptyset\}$ a umět spočítat prvky množiny plné závorek.
+
+\subsection{Prvek a podmnožina nejsou totéž}
+
+\begin{defin}{Podmnožina}
+$A\subseteq B$ znamená $\forall x\in A:\ x\in B$ (každý prvek $A$ je prvkem $B$). $A\subsetneq B$ znamená $A\subseteq B$ a $A\neq B$ (vlastní podmnožina).
+\end{defin}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{symbol} & \textbf{význam} & \textbf{příklad (pravda)}\\\midrule
+$x\in A$ & $x$ je \emph{prvek} $A$ & $2\in\{1,2,3\}$\\
+$A\subseteq B$ & \emph{všechny} prvky $A$ jsou v $B$ & $\{1,2\}\subseteq\{1,2,3\}$\\
+$A=B$ & stejné prvky & $\{1,2\}=\{2,1,1\}$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{past}{$\in$ a $\subseteq$ si nesmíš splést}
+$2\in\{1,2,3\}$, ale $\{2\}\subseteq\{1,2,3\}$ (nikoli $\{2\}\in\{1,2,3\}$ a nikoli $2\subseteq\{1,2,3\}$). Pro $S=\{1,\{1\}\}$ platí současně $1\in S$, $\{1\}\in S$, $\{1\}\subseteq S$ (protože $1\in S$) a $\{\{1\}\}\subseteq S$ (protože $\{1\}\in S$). Ale $\{1,\{1\}\}\in S$ neplatí.\\
+\textbf{Pravidlo:} $\{x\}\subseteq A\iff x\in A$. Podmnožinu poznáš tak, že ji \emph{rozbalíš}: $\{x,y\}\subseteq A\iff x\in A\land y\in A$.
+\end{past}
+
+\subsection{Prázdná množina}
+
+\begin{defin}{Prázdná množina}
+$\emptyset=\{\}$ je množina bez prvků, tedy $\forall x:\ x\notin\emptyset$ a $|\emptyset|=0$.
+\end{defin}
+
+\begin{klic}{$\emptyset\subseteq A$ pro každou množinu $A$}
+\emph{Důkaz.} Chceme $\forall x\in\emptyset:\ x\in A$. Kdyby to neplatilo, existoval by $x\in\emptyset$ s $x\notin A$. Ale $\emptyset$ nemá žádný prvek, takový $x$ neexistuje, a tvrzení tedy platí. (Je to prázdná pravdivost z kapitoly 1.) \qed
+\end{klic}
+
+\begin{past}{$\emptyset$ a $\{\emptyset\}$ jsou různé množiny}
+$\emptyset$ je \emph{prázdná krabice} (0 prvků). $\{\emptyset\}$ je \emph{krabice, ve které leží prázdná krabice} (1 prvek, a tím prvkem je $\emptyset$). Proto $\emptyset\neq\{\emptyset\}$, $|\emptyset|=0$, $|\{\emptyset\}|=1$. Podobně $\{\{a\},\{b\}\}\neq\{a,b\}$: vlevo jsou prvky \emph{množiny} $\{a\}$ a $\{b\}$, vpravo objekty $a$ a $b$.\\
+Důsledky: $\emptyset\subseteq\emptyset$ platí, $\emptyset\in\emptyset$ neplatí. $\emptyset\in\{\emptyset\}$ platí i $\emptyset\subseteq\{\emptyset\}$ platí. Ale $\{\emptyset\}\subseteq\emptyset$ neplatí (prvek $\emptyset$ by musel ležet v $\emptyset$).
+\end{past}
+
+\subsection{Kolik má množina prvků}
+
+\begin{pozn}{Recept na počítání prvků (tři kroky)}
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item Podívej se na \textbf{nejvyšší úroveň} závorek. Prvky množiny jsou to, co leží \emph{přímo} v největších složených závorkách, ne to, co je zanořeno hlouběji.
+  \item Zjisti, které zápisy jsou \textbf{stejný objekt}: $\{\}=\emptyset$, $\{b,a\}=\{a,b\}$, $\{1,1\}=\{1\}$, $\{\{\},\{\}\}=\{\emptyset\}$. Sjednocení dvou množin je zase množina: $\{y\}\cup\{z\}=\{y,z\}$.
+  \item Vypiš \textbf{různé} objekty a spočítej je. Na testu je vypiš, aspoň na jeden řádek.
+\end{enumerate}
+\end{pozn}
+
+\begin{vzor}{3.1\quad(Cv.~5.6)}
+Které z výroků jsou pravdivé? (a) $x\in\{x\}$ (b) $\emptyset=\{\emptyset\}$ (c) $\emptyset\in\{\emptyset\}$ (d) $\emptyset=\mathcal P(\emptyset)$ (e) $\emptyset\in\{\}$ (f) $\emptyset\in\mathcal P(\emptyset)$
+\jak
+U každého se ptám: \emph{kolik} prvků má množina vpravo a \emph{co} to za prvky jsou. $\mathcal P(\emptyset)$ je množina všech podmnožin $\emptyset$, a jediná podmnožina $\emptyset$ je $\emptyset$ samotná, takže $\mathcal P(\emptyset)=\{\emptyset\}$.
+\zapis
+\begin{center}\small
+\begin{tabular}{@{}cll@{}}
+(a) & \pravda & $\{x\}$ je množina, jejímž prvkem je $x$.\\
+(b) & \nepravda & vlevo 0 prvků, vpravo 1 prvek.\\
+(c) & \pravda & $\emptyset$ je jediný prvek množiny $\{\emptyset\}$.\\
+(d) & \nepravda & $\mathcal P(\emptyset)=\{\emptyset\}$ má 1 prvek, $\emptyset$ žádný.\\
+(e) & \nepravda & $\{\}$ nemá žádný prvek, takže v ní nic neleží.\\
+(f) & \pravda & $\mathcal P(\emptyset)=\{\emptyset\}$, a $\emptyset$ je jeho prvek.
+\end{tabular}
+\end{center}
+\end{vzor}
+
+\begin{vzor}{3.2\quad(Cv.~6.4b, 6.4c)}
+Kolik prvků mají množiny (b) $\{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\},\{\{\},\{\}\}\}$ a (c) $\{x,y,z\}\cup\{z,y,x\}\cup\{x,\{y,z\}\}\cup\{\{y\}\cup\{z\}\}$?
+\jak
+(b) Přepíšu na stejné objekty: $\{\}=\emptyset$ a $\{\{\},\{\}\}=\{\emptyset,\emptyset\}=\{\emptyset\}$. (c) Pozor na poslední člen: $\{y\}\cup\{z\}=\{y,z\}$ je \emph{množina}, takže $\{\{y\}\cup\{z\}\}=\{\{y,z\}\}$ je množina s jedním prvkem $\{y,z\}$.
+\zapis
+(b) Po přepisu: $\{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\emptyset,\{\emptyset\}\}$. Různé prvky: $\emptyset,\ \{\emptyset\},\ \{\{\emptyset\}\}$. \textbf{Tři prvky.}\\
+(c) $\{x,y,z\}\cup\{z,y,x\}=\{x,y,z\}$. Další člen přidá prvek $\{y,z\}$. Poslední člen přidá znovu $\{y,z\}$, nic nového. Prvky: $x,\ y,\ z,\ \{y,z\}$. \textbf{Čtyři prvky.}
+\end{vzor}
+
+\begin{vzor}{3.3\quad(nové)}
+Nechť $T=\{a,\{a\},\{a,b\},\emptyset\}$. Pro každé $x$ rozhodněte, zda $x\in T$ a zda $x\subseteq T$.
+\jak
+$x\in T$: stačí porovnat $x$ s prvky $T$ ($a$, $\{a\}$, $\{a,b\}$, $\emptyset$). $x\subseteq T$: každý prvek $x$ musí ležet v $T$, takže prvky $x$ si vypíšu a kontroluji po jednom.
+\zapis
+\begin{center}\small
+\begin{tabular}{@{}lccl@{}}
+\toprule
+$x$ & $x\in T$ & $x\subseteq T$ & důvod\\\midrule
+$\{a\}$ & \Ano & \Ano & je mezi prvky; jediný prvek $a\in T$\\
+$\{a,b\}$ & \Ano & \Ne & je mezi prvky; ale $b\notin T$\\
+$\emptyset$ & \Ano & \Ano & je mezi prvky; $\emptyset\subseteq$ cokoli\\
+$\{\emptyset\}$ & \Ne & \Ano & mezi prvky není; jediný prvek $\emptyset\in T$\\
+$\{\{a\}\}$ & \Ne & \Ano & mezi prvky není; jediný prvek $\{a\}\in T$\\
+$\{b\}$ & \Ne & \Ne & mezi prvky není; $b\notin T$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{vzor}
+
+\begin{uloha}{3.1}{$\blacklozenge$ Cv.~5.6}{u31}
+Které z výroků jsou pravdivé? Krátce zdůvodněte.
+\begin{dvasl}
+  \item $x\in\{x\}$
+  \item $\emptyset=\{\emptyset\}$
+  \item $\emptyset\in\{\emptyset\}$
+  \item $\emptyset=\mathcal P(\emptyset)$
+  \item $\emptyset\in\{\}$
+  \item $\emptyset\in\mathcal P(\emptyset)$
+\end{dvasl}
+\mrizka{3.5cm}
+\end{uloha}
+
+\begin{uloha}{3.2}{$\blacklozenge$ Cv.~6.4a, 6.4b}{u32}
+Kolik prvků mají množiny? Prvky vypište.
+\begin{pol}
+  \item $\{a,b,c,\{a,b,c\},\{\{a\},\{b\},\{c\}\},\{a\},\{b\},\{c\},\{\{a\}\},\{c,b,a\}\}$
+  \item $\{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\},\{\{\},\{\}\}\}$
+\end{pol}
+\mrizka{3.5cm}
+\end{uloha}
+
+\begin{uloha}{3.3}{$\blacklozenge$ Cv.~6.4c, 6.4d}{u33}
+Kolik prvků mají množiny? Prvky vypište.
+\begin{pol}
+  \item $\{x,y,z\}\cup\{z,y,x\}\cup\{x,\{y,z\}\}\cup\{\{y\}\cup\{z\}\}$
+  \item $\{1\}\cup\{1,1\}\cup\{1,\{1\},1\}\cup\{1,\{1,1\},1\}$
+\end{pol}
+\mrizka{3.5cm}
+\end{uloha}
+
+\begin{uloha}{3.4}{nové}{u34}
+Rozhodněte, zda je výrok pravdivý, a krátce zdůvodněte:
+\begin{dvasl}
+  \item $\emptyset\subseteq\emptyset$
+  \item $\emptyset\in\emptyset$
+  \item $\{\emptyset\}\subseteq\{\emptyset,\{\emptyset\}\}$
+  \item $\{\{\emptyset\}\}\subseteq\{\emptyset,\{\emptyset\}\}$
+  \item $\{a,b\}\in\{a,b,\{a\},\{b\}\}$
+  \item $\{\{a\},\{b\}\}\subseteq\{a,b,\{a\},\{b\}\}$
+  \item $3\in\{1,2,\{3\}\}$
+  \item $\{3\}\subseteq\{1,2,\{3\}\}$
+  \item $\{\{3\}\}\subseteq\{1,2,\{3\}\}$
+\end{dvasl}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{3.5}{nové}{u35}
+Nechť $T=\{a,\{a\},\{a,b\},\emptyset\}$ (stejná množina jako ve vzoru, ale zkus to sám \emph{bez} koukání). Doplňte tabulku \Ano/\Ne{} pro $x\in T$ a $x\subseteq T$:
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|c|c|c|}
+\hline
+$x$ & $x\in T$ & $x\subseteq T$\\\hline
+$\{a,b\}$ & \hspace{1.6cm} & \hspace{1.6cm}\\\hline
+$\{\emptyset\}$ & & \\\hline
+$\{b\}$ & & \\\hline
+$\{\{a,b\}\}$ & & \\\hline
+$\{a,\emptyset\}$ & & \\\hline
+\end{tabular}
+\end{center}
+\end{uloha}
+
+\begin{uloha}{3.6}{nové}{u36}
+Kolik prvků mají tyto množiny? Prvky vypište.
+\begin{pol}
+  \item $\{\emptyset,\{\emptyset\},\{\emptyset,\emptyset\},\{\{\emptyset\},\{\emptyset\}\}\}$
+  \item $\{x,y\}\cup\{\{x\},\{y\}\}\cup\{\{x,y\}\}$
+  \item $\mathcal P(\{1,2\})\sm\{\emptyset,\{1\}\}$
+  \item $\{n\in\N\mid n\pr12\}\cap\{n\in\N\mid n\pr18\}$
+\end{pol}
+\mrizka{4.5cm}
+\end{uloha}
+
+\kap{Vztahy mezi množinami a kvantifikátory}
+
+Úlohy cvičení 5.1, 5.2 a 5.4 chtějí po tobě jedno: umět \emph{vztah mezi množinami} říct pomocí kvantifikátorů a naopak. Je to přímé použití kapitoly 1.
+
+\subsection{Slovník, který musíš umět zpaměti}
+
+\begin{defin}{Základní vztahy přes kvantifikátory}
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{tvrzení} & \textbf{kvantifikátory}\\\midrule
+$A\subseteq B$ & $\forall x\in A:\ x\in B$\\
+$A=B$ & $A\subseteq B\ \land\ B\subseteq A$, tj.\ $\forall x\,(x\in A\Leftrightarrow x\in B)$\\
+$A\nsubseteq B$ & $\exists x\in A:\ x\notin B$\\
+$A\cap B=\emptyset$ & $\forall x\in A:\ x\notin B$\\
+$A\cap B\neq\emptyset$ & $\exists x\in A:\ x\in B$\\
+$A\cup B\neq\emptyset$ & $\exists x\,(x\in A\lor x\in B)$, tj.\ $A\neq\emptyset$ nebo $B\neq\emptyset$\\
+$A\sm B\neq\emptyset$ & $\exists x\in A:\ x\notin B$ \quad (totéž co $A\nsubseteq B$)\\
+$A\sm B=\emptyset$ & $\forall x\in A:\ x\in B$ \quad (totéž co $A\subseteq B$)\\
+$A\subsetneq B$ & $A\subseteq B\ \land\ \exists x\in B:\ x\notin A$\\\bottomrule
+\end{tabular}
+\end{center}
+\end{defin}
+
+\begin{past}{Dva typické omyly}
+\textbf{(1)} $A\nsubseteq B$ \emph{neznamená} $B\subseteq A$. Pro $A=\{1,2\}$, $B=\{2,3\}$ neplatí ani jedna inkluze. \textbf{(2)} $A\cap B=\emptyset$ \emph{neznamená}, že $A$ nebo $B$ je prázdná. Množiny $\{1\}$ a $\{2\}$ jsou neprázdné a přesto disjunktní.
+\end{past}
+
+\subsection{Směr implikace je směr inkluze}
+
+\begin{klic}{Implikace $\leftrightarrow$ inkluze}
+Nechť $S$ je pevná množina a $A$ libovolná. Pak
+\begin{align*}
+\forall a:\ (a\in A\Rightarrow a\in S)&\iff A\subseteq S,\\
+\forall a:\ (a\in S\Rightarrow a\in A)&\iff S\subseteq A,\\
+\forall a:\ (a\in A\Leftrightarrow a\in S)&\iff A=S.
+\end{align*}
+Tedy: z čeho implikace vychází, to je \emph{menší} množina. „Každé číslo z $A$ je sudé“ je $A\subseteq S$. „$A$ obsahuje všechna sudá čísla“ je $S\subseteq A$. První řádek je přímo definice $\subseteq$, druhý je tatáž definice s prohozenými rolemi, třetí je definice rovnosti. \qed
+\end{klic}
+
+\begin{vzor}{4.1\quad(Cv.~5.1, 5.2)}
+V oboru celých čísel zapište kvantifikátory: (a) každé číslo z množiny $A$ je sudé, (b) $A$ obsahuje všechna sudá čísla, (c) $x\in A$ právě tehdy, když je $x$ sudé. Jaký je vztah množiny $A$ a množiny $S$ všech sudých celých čísel?
+\jak
+„Sudé“ je podmínka $2\pr a$ (neboli $\frac a2\in\Z$). V (a) se mluví o prvcích $A$ a o tom, že jsou sudé, tak implikace jde $a\in A\Rightarrow$ sudé. V (b) se mluví o sudých číslech a o tom, že leží v $A$, tak implikace jde obráceně. V (c) jsou obě.
+\zapis
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+(a) & $\forall a\in A:\ 2\pr a$ \quad(nebo $\forall a\in\Z:\ (a\in A\Rightarrow 2\pr a)$) & $A\subseteq S$\\
+(b) & $\forall a\in\Z:\ (2\pr a\Rightarrow a\in A)$ & $S\subseteq A$\\
+(c) & $\forall a\in\Z:\ (a\in A\Leftrightarrow 2\pr a)$ & $A=S$
+\end{tabular}
+\end{center}
+\zkouska $A=\{2,4\}$ splňuje (a) a $A\subseteq S$, ale (b) ne ($6\notin A$). $A=\Z$ splňuje (b), ale ne (a). \checkmark
+\end{vzor}
+
+\begin{vzor}{4.2\quad(Cv.~5.4)}
+Popište pomocí kvantifikátorů přes $A$ a $B$: (a) $A\subseteq B$ (b) $A=B$ (c) $A\nsubseteq B$ (d) $A\cup B\neq\emptyset$ (e) $A\cap B=\emptyset$ (f) $A\sm B\neq\emptyset$.
+\jak
+Všechno plyne ze slovníku výše. Při negaci (c) převrátím $\forall$ na $\exists$ a znegovaná implikace je konjunkce $x\in A\land x\notin B$. U (d) pozor: sjednocení je neprázdné, když \emph{aspoň jedna} z množin je neprázdná.
+\zapis
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+(a) & $\forall x\in A:\ x\in B$\\
+(b) & $(\forall x\in A:\ x\in B)\ \land\ (\forall x\in B:\ x\in A)$\\
+(c) & $\exists x\in A:\ x\notin B$\\
+(d) & $\exists x\,(x\in A\lor x\in B)$\\
+(e) & $\forall x\in A:\ x\notin B$\\
+(f) & $\exists x\in A:\ x\notin B$
+\end{tabular}
+\end{center}
+Všimni si, že (c) a (f) říkají totéž: $A\sm B\neq\emptyset\iff A\nsubseteq B$.
+\end{vzor}
+
+\begin{tvrz}{Inkluze a operace}
+Pro libovolné množiny $A,B$ jsou ekvivalentní: (i) $A\subseteq B$, (ii) $A\cup B=B$, (iii) $A\cap B=A$, (iv) $A\sm B=\emptyset$.\\
+\emph{Důkaz (i)$\Leftrightarrow$(ii).} „$\Rightarrow$“: Vždy $B\subseteq A\cup B$. Je-li $x\in A\cup B$, pak $x\in B$ (když $x\in B$) nebo $x\in A\subseteq B$, tedy $x\in B$ v obou případech. „$\Leftarrow$“: Je-li $x\in A$, pak $x\in A\cup B=B$. \qed\\
+Zbylé ekvivalence jsou úloha 5.5.
+\end{tvrz}
+
+\begin{uloha}{4.1}{$\blacklozenge$ Cv.~5.1, 5.2}{u41}
+V oboru celých čísel zapište kvantifikátory a rozhodněte vztah množiny $A$ k množině $S$ všech sudých celých čísel: (a) každé číslo z $A$ je sudé, (b) $A$ obsahuje všechna sudá čísla, (c) číslo $x$ je prvkem $A$ právě tehdy, když je sudé.
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{4.2}{nové}{u42}
+Nechť $T$ je množina všech celých násobků čísla $3$. Zapište kvantifikátory a určete vztah $A$ a $T$:
+\begin{pol}
+  \item každé číslo z $A$ je násobkem tří,
+  \item $A$ obsahuje všechny násobky tří,
+  \item $x\in A$ právě tehdy, když je $x$ násobkem tří,
+  \item žádné číslo z $A$ není násobkem tří,
+  \item $A$ obsahuje aspoň jeden násobek tří.
+\end{pol}
+\mrizka{5.0cm}
+\end{uloha}
+
+\begin{uloha}{4.3}{$\blacklozenge$ Cv.~5.4}{u43}
+Popište pomocí kvantifikátorů přes množiny $A$ a $B$:
+\begin{dvasl}
+  \item $A\subseteq B$
+  \item $A=B$
+  \item $A\nsubseteq B$
+  \item $A\cup B\neq\emptyset$
+  \item $A\cap B=\emptyset$
+  \item $A\sm B\neq\emptyset$
+\end{dvasl}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{4.4}{nové}{u44}
+Zapište kvantifikátory:
+\begin{pol}
+  \item $A\nsubseteq B$ a zároveň $B\nsubseteq A$,
+  \item množina $A$ má aspoň dva prvky,
+  \item množina $A\cap B$ má \emph{právě jeden} prvek,
+  \item $A\subsetneq B$.
+\end{pol}
+\nap{(c) existuje společný prvek a každý společný prvek je ten samý.}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{4.5}{nové}{u45}
+Znegujte (výsledek zapište kvantifikátory bez negace před nimi) a slovně popište, co negace říká:
+\begin{pol}
+  \item $A\subseteq B\ \lor\ B\subseteq A$
+  \item $A\cap B=\emptyset$
+  \item $A=B$
+\end{pol}
+\mrizka{4.0cm}
+\end{uloha}
+
+\kap{Množinové operace a důkazy rovností}
+
+\subsection{Definice a zákony}
+
+\begin{defin}{Množinové operace}
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{operace} & \textbf{zápis} & \textbf{definice} & \textbf{slovně}\\\midrule
+sjednocení & $A\cup B$ & $\{x\mid x\in A\lor x\in B\}$ & v $A$ \emph{nebo} v $B$\\
+průnik & $A\cap B$ & $\{x\mid x\in A\land x\in B\}$ & v $A$ \emph{a zároveň} v $B$\\
+rozdíl & $A\sm B$ & $\{x\in A\mid x\notin B\}$ & v $A$, ale \emph{ne} v $B$\\
+kartézský součin & $A\times B$ & $\{(a,b)\mid a\in A\land b\in B\}$ & uspořádané dvojice\\
+potenční množina & $\mathcal P(A)$ & $\{X\mid X\subseteq A\}$ & všechny podmnožiny\\\bottomrule
+\end{tabular}
+\end{center}
+\end{defin}
+
+Příklad: pro $A=\{1,2,3,4\}$, $B=\{3,4,5\}$ je $A\cup B=\{1,2,3,4,5\}$, $A\cap B=\{3,4\}$, $A\sm B=\{1,2\}$, $B\sm A=\{5\}$.
+
+\begin{past}{Rozdíl je zrádný}
+$A\sm B\neq B\sm A$ (obecně). Rozdíl \emph{neodečítá čísla}: $\{1,2,3\}\sm\{3,4\}=\{1,2\}$, čtyřka v $A$ nebyla a nic se neděje. Rozdíl také není asociativní: $A\sm(B\sm C)\neq(A\sm B)\sm C$. A $(a,b)\neq(b,a)$ pro $a\neq b$, kdežto $\{a,b\}=\{b,a\}$, proto $A\times B\neq B\times A$.
+\end{past}
+
+\begin{tvrz}{Zákony pro množiny}
+Pro libovolné množiny $A,B,C$ platí:
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+distributivita & $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$, \quad $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$\\
+De~Morgan (rozdíl) & $A\sm(B\cup C)=(A\sm B)\cap(A\sm C)$, \quad $A\sm(B\cap C)=(A\sm B)\cup(A\sm C)$\\
+absorpce & $A\cup(A\cap B)=A$, \quad $A\cap(A\cup B)=A$\\
+s prázdnou množinou & $A\cup\emptyset=A$, \ $A\cap\emptyset=\emptyset$, \ $A\sm\emptyset=A$, \ $\emptyset\sm A=\emptyset$
+\end{tabular}
+\end{center}
+Plynou přímo z logických zákonů z kapitoly 1: distributivity $\land,\lor$ a De~Morganových pravidel.
+\end{tvrz}
+
+\begin{past}{Tohle \emph{neplatí}}
+$A\cup(B\cap C)\neq A\cap(B\cup C)$ (nepřehazuj $\cup$ a $\cap$): $A=\{1\}$, $B=C=\emptyset$ dá vlevo $\{1\}$, vpravo $\emptyset$. Také $(A\sm B)\cup B\neq A$ (vyjde $A\cup B$).
+\end{past}
+
+\subsection{Jak dokázat nebo vyvrátit rovnost}
+
+\begin{pozn}{Tři metody}
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Řetěz ekvivalencí.} Vezmi libovolné $x$ a upravuj výrok „$x\in$ levá strana“ na „$x\in$ pravá strana“. Každý krok musí být \emph{ekvivalence}.
+  \item \textbf{Dvě inkluze.} Dokaž $L\subseteq P$ a $P\subseteq L$. Obě začínají „Nechť $x\in L$. Pak\dots\ Tedy $x\in P$.“
+  \item \textbf{Tabulka členství} (jako pravdivostní tabulka): pro každou kombinaci „leží $x$ v $A$ / $B$ / $C$?“ spočítáš, zda $x$ leží ve výrazu. Pro tři množiny je 8 řádků. Řádek, kde se sloupce liší, ti rovnou dá \textbf{protipříklad}.
+\end{enumerate}
+\textbf{Vyvrácení rovnosti} je vždy jeden konkrétní protipříklad s malými množinami. „Na obrázku to vypadá, že ne“ nestačí.
+\end{pozn}
+
+\begin{vzor}{5.1\quad(Cv.~5.8: (f)=(g))}
+Dokažte $(B\cup C)\sm A=(B\sm A)\cup(C\sm A)$.
+\jak
+Obě strany převedu na výrok o prvku $x$. Vlevo je „$x$ je v $B$ nebo v $C$, a není v $A$“. Vpravo je „($x$ je v $B$ a není v $A$) nebo ($x$ je v $C$ a není v $A$)“. To je přesně distributivita $\land$ přes $\lor$.
+\zapis
+Nechť $x$ je libovolný prvek. Pak
+\begin{align*}
+x\in(B\cup C)\sm A&\iff (x\in B\lor x\in C)\land x\notin A\\
+&\iff (x\in B\land x\notin A)\lor(x\in C\land x\notin A) &&\text{(distributivita)}\\
+&\iff x\in(B\sm A)\cup(C\sm A).
+\end{align*}
+Všechny kroky jsou ekvivalence, platí tedy rovnost. \qed
+\end{vzor}
+
+\begin{vzor}{5.2\quad(nové: protipříklad tabulkou)}
+Platí $A\sm(B\sm C)=(A\sm B)\sm C$?
+\jak
+Rozdíl není asociativní, takže čekám, že ne. Sestavím tabulku členství: 1 znamená „$x$ leží v množině“.
+\zapis
+\begin{center}\small
+\begin{tabular}{@{}ccc|c|c|c|c@{}}
+$A$ & $B$ & $C$ & $B\sm C$ & $A\sm(B\sm C)$ & $A\sm B$ & $(A\sm B)\sm C$\\\hline
+1&1&1&0&\textbf{1}&0&\textbf{0}\\
+1&1&0&1&0&0&0\\
+1&0&1&0&\textbf{1}&1&\textbf{0}\\
+1&0&0&0&1&1&1\\
+0&\multicolumn{2}{c|}{(libovolně)}&&0&&0
+\end{tabular}
+\end{center}
+Sloupce se liší v řádku $(1,1,1)$. \textbf{Protipříklad:} $A=B=C=\{1\}$: vlevo $\{1\}\sm(\{1\}\sm\{1\})=\{1\}\sm\emptyset=\{1\}$, vpravo $(\{1\}\sm\{1\})\sm\{1\}=\emptyset$. Rovnost neplatí.
+\end{vzor}
+
+\subsection{Velikosti množin}
+
+\begin{tvrz}{Počty prvků}
+Pro konečné množiny platí
+\[
+|A\cup B|=|A|+|B|-|A\cap B|,\qquad |A\times B|=|A|\cdot|B|,\qquad |\mathcal P(A)|=2^{|A|}.
+\]
+Prvky společné $A$ i $B$ jsme v $|A|+|B|$ započítali dvakrát, proto odečítáme $|A\cap B|$ jednou. Pro tři množiny je
+$|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|$.
+\end{tvrz}
+
+\begin{vzor}{5.3\quad(nové)}
+Ve třídě je 28 studentů. Angličtinu má 17, němčinu 12 a obojí 5. Kolik jich nemá žádný z těchto jazyků?
+\jak
+Označím $A$ studenty s angličtinou, $B$ s němčinou. Hledám $28-|A\cup B|$.
+\zapis
+$|A\cup B|=17+12-5=24$, tedy žádný jazyk nemají $28-24=\textbf{4}$ studenti.
+\end{vzor}
+
+\begin{uloha}{5.1}{$\blacklozenge$ Cv.~5.8}{u51}
+Doplňte tabulku členství a rozhodněte, které z množin (a)--(h) jsou si rovny:
+\begin{center}\small
+\begin{tabular}{@{}ll@{\qquad}ll@{}}
+(a) $A\cup(B\cap C)$ & (e) $A\sm B$ \\
+(b) $A\cap(B\cup C)$ & (f) $(B\cup C)\sm A$ \\
+(c) $(A\cup B)\cap(A\cup C)$ & (g) $(B\sm A)\cup(C\sm A)$ \\
+(d) $(A\cap B)\cup(A\cap C)$ & (h) $(A\sm B)\sm(B\sm C)$ \\
+\end{tabular}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{|c|c|c|*{8}{c|}}
+\hline
+$A$&$B$&$C$&(a)&(b)&(c)&(d)&(e)&(f)&(g)&(h)\\\hline
+1&1&1&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}&\hspace{0.65cm}\\\hline
+1&1&0&&&&&&&&\\\hline
+1&0&1&&&&&&&&\\\hline
+1&0&0&&&&&&&&\\\hline
+0&1&1&&&&&&&&\\\hline
+0&1&0&&&&&&&&\\\hline
+0&0&1&&&&&&&&\\\hline
+0&0&0&&&&&&&&\\\hline
+\end{tabular}
+\end{center}
+\end{uloha}
+
+\begin{uloha}{5.2}{$\blacklozenge$ Cv.~5.8}{u52}
+Dokažte řetězem ekvivalencí: (a) $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$, (b) $(A\sm B)\sm(B\sm C)=A\sm B$.
+\nap{(b) Ve druhém činiteli $\neg(x\in B\land x\notin C)$ už víš $x\notin B$.}
+\mrizka{6.5cm}
+\end{uloha}
+
+\begin{uloha}{5.3}{$\blacklozenge$ Cv.~1.8}{u53}
+Pro libovolné množiny $A,B,C,D$ označme $M_1=A\sm(B\cup C\cup D)$, $M_2=A\sm(B\cap C\cap D)$, $M_3=(A\sm B)\cup(A\sm C)\cup(A\sm D)$, $M_4=(A\sm B)\cap(A\sm C)\cap(A\sm D)$. Které dvojice jsou si rovny a jaký je vztah $M_1$ a $M_2$? Pokud inkluze neplatí obráceně, uveďte protipříklad.
+\mrizka{6.0cm}
+\end{uloha}
+
+\begin{uloha}{5.4}{nové}{u54}
+Platí rovnost pro všechny množiny $A,B,C$? Dokažte, nebo vyvraťte protipříkladem:
+\begin{pol}
+  \item $(A\cup B)\sm C=(A\sm C)\cup(B\sm C)$
+  \item $A\sm(B\cup C)=(A\sm B)\sm C$
+  \item $A\cup(B\sm C)=(A\cup B)\sm C$
+  \item $A\cap(B\sm C)=(A\cap B)\sm C$
+  \item $(A\sm B)\cup(B\sm A)=(A\cup B)\sm(A\cap B)$
+  \item $A\sm(B\sm C)=(A\sm B)\cup(A\cap C)$
+\end{pol}
+\mrizka{9.0cm}
+\end{uloha}
+
+\begin{uloha}{5.5}{nové}{u55}
+Dokažte pro libovolné množiny: $A\subseteq B\iff A\cap B=A$ a dále $A\subseteq B\iff A\sm B=\emptyset$.
+\mrizka{6.0cm}
+\end{uloha}
+
+\begin{uloha}{5.6}{$\blacklozenge$ Cv.~5.5 + nové}{u56}
+(a) Vyjádřete $|A\cup B|$, $|A\times B|$, $|\mathcal P(A)|$ pomocí $|A|$, $|B|$, $|A\cap B|$. (b) Pro $|A|=8$, $|B|=5$, $|A\cap B|=2$ je spočítejte. (c) Ve skupině 40 lidí se 25 učí francouzsky, 18 španělsky a 6 obojí. Kolik se neučí ani jedním jazykem?
+\mrizka{4.5cm}
+\end{uloha}
+
+\kap{Potenční množina}
+
+Potenční množina působí děsivě jen proto, že její prvky jsou \emph{množiny}. Kdo to má v hlavě, vyřeší většinu úloh.
+
+\begin{defin}{Potenční množina}
+$\mathcal P(A)=2^A=\{X\mid X\subseteq A\}$ je množina \textbf{všech podmnožin} množiny $A$. Klíčová ekvivalence:
+\[
+X\in\mathcal P(A)\iff X\subseteq A.
+\]
+\end{defin}
+
+Prvky $\mathcal P(A)$ jsou množiny, \emph{ne} prvky $A$. Vždy platí $\emptyset\in\mathcal P(A)$ a $A\in\mathcal P(A)$. Příklady:
+\begin{align*}
+\mathcal P(\{1,2\})&=\{\emptyset,\{1\},\{2\},\{1,2\}\} &&(4=2^2\text{ prvky}),\\
+\mathcal P(\{a\})&=\{\emptyset,\{a\}\} &&(2=2^1),\\
+\mathcal P(\emptyset)&=\{\emptyset\} &&(1=2^0\ \text{prvek, ne nula!}),\\
+\mathcal P(\mathcal P(\emptyset))&=\mathcal P(\{\emptyset\})=\{\emptyset,\{\emptyset\}\} &&(2=2^1).
+\end{align*}
+
+\begin{tvrz}{$|\mathcal P(A)|=2^{|A|}$}
+\emph{Proč:} Při tvorbě podmnožiny rozhodneš u \textbf{každého} z $n$ prvků dvě možnosti, „vezmu / nevezmu“. Dostaneš $2\cdot2\cdots2=2^n$ různých podmnožin. Pro $n=0$ je jedna možnost (nevzít nic), proto $|\mathcal P(\emptyset)|=1$. Počet $k$-prvkových podmnožin je $\binom nk$ a $\sum_{k=0}^{n}\binom nk=2^n$.
+\end{tvrz}
+
+\begin{past}{$\in$ vs.\ $\subseteq$ u $\mathcal P$}
+Pro $A=\{1,2\}$ je $\{1\}\in\mathcal P(A)$, ale $1\notin\mathcal P(A)$ (jednička není podmnožina). Za to $\{\{1\}\}\subseteq\mathcal P(A)$, protože $\{1\}\in\mathcal P(A)$. Obecně: $X\in\mathcal P(A)$ kontroluješ \emph{rozbalením X} ($X\subseteq A$), kdežto $Y\subseteq\mathcal P(A)$ kontroluješ \emph{po prvcích Y}, z nichž každý musí být podmnožinou $A$.
+\end{past}
+
+\subsection{Potenční množina a operace}
+
+\begin{klic}{$\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$}
+Pro libovolnou množinu $X$:
+\[
+X\in\mathcal P(A\cap B)\iff X\subseteq A\cap B\iff(X\subseteq A\land X\subseteq B)\iff(X\in\mathcal P(A)\land X\in\mathcal P(B))\iff X\in\mathcal P(A)\cap\mathcal P(B).
+\]
+Všechny kroky jsou ekvivalence, platí tedy \textbf{rovnost}. (Druhá ekvivalence: $X$ je podmnožinou průniku, právě když je podmnožinou obou.) \qed
+\end{klic}
+
+\begin{klic}{$\mathcal P(A)\cup\mathcal P(B)\subseteq\mathcal P(A\cup B)$, ale ne obráceně}
+\emph{Důkaz inkluze.} Nechť $X\in\mathcal P(A)\cup\mathcal P(B)$. Pak $X\subseteq A$ nebo $X\subseteq B$. Protože $A\subseteq A\cup B$ i $B\subseteq A\cup B$, platí v obou případech $X\subseteq A\cup B$, tedy $X\in\mathcal P(A\cup B)$.\\
+\emph{Protipříklad opačné inkluze.} $A=\{1\}$, $B=\{2\}$: $\{1,2\}\in\mathcal P(A\cup B)$, ale $\{1,2\}\nsubseteq\{1\}$ a $\{1,2\}\nsubseteq\{2\}$, takže $\{1,2\}\notin\mathcal P(A)\cup\mathcal P(B)$. Podmnožina sjednocení se může „rozprostřít“ do obou množin zároveň. \qed
+\end{klic}
+
+\begin{tvrz}{$\mathcal P(A\sm B)$ a $\mathcal P(A)\sm\mathcal P(B)$ jsou obecně neporovnatelné}
+\textbf{(i)} $\mathcal P(A\sm B)\nsubseteq\mathcal P(A)\sm\mathcal P(B)$ vždy: levá strana obsahuje $\emptyset$ (je podmnožinou čehokoli), ale $\emptyset\in\mathcal P(B)$, takže $\emptyset\notin\mathcal P(A)\sm\mathcal P(B)$.\\
+\textbf{(ii)} $\mathcal P(A)\sm\mathcal P(B)\nsubseteq\mathcal P(A\sm B)$ obecně: $A=\{1,2\}$, $B=\{2\}$ dá $\mathcal P(A)\sm\mathcal P(B)=\{\{1\},\{1,2\}\}$, ale $\{1,2\}\notin\mathcal P(\{1\})=\{\emptyset,\{1\}\}$.\\
+(Pro $A=B$ je $\mathcal P(A)\sm\mathcal P(B)=\emptyset$ a ta je podmnožinou čehokoli. Proto říkáme „obecně“: stačí jeden protipříklad.)
+\end{tvrz}
+
+\begin{vzor}{6.1\quad(nové)}
+Vypište $\mathcal P(S)$ pro $S=\{\emptyset,\{\emptyset\}\}$ a rozhodněte: (a) $\emptyset\in\mathcal P(S)$, (b) $\{\emptyset\}\in\mathcal P(S)$, (c) $\{\{\emptyset\}\}\in\mathcal P(S)$, (d) $S\in\mathcal P(S)$, (e) $\{S\}\in\mathcal P(S)$, (f) $\{S\}\subseteq\mathcal P(S)$.
+\jak
+$S$ má dva prvky, $\emptyset$ a $\{\emptyset\}$, takže $\mathcal P(S)$ má $2^2=4$ prvky: podmnožiny s žádným, s jedním, s druhým a s oběma prvky. Pak u každé možnosti kontroluji buď $X\subseteq S$ (pro $\in$), nebo prvky (pro $\subseteq$).
+\zapis
+$\mathcal P(S)=\big\{\emptyset,\ \{\emptyset\},\ \{\{\emptyset\}\},\ \{\emptyset,\{\emptyset\}\}\big\}$.\\
+(a) \pravda, $\emptyset\subseteq S$. (b) \pravda, $\{\emptyset\}\subseteq S$, protože $\emptyset\in S$. (c) \pravda, $\{\{\emptyset\}\}\subseteq S$, protože $\{\emptyset\}\in S$. (d) \pravda, $S\subseteq S$. (e) \nepravda: $\{S\}\subseteq S$ by vyžadovalo $S\in S$, a to neplatí (prvky $S$ jsou $\emptyset$ a $\{\emptyset\}$). (f) \pravda: jediný prvek $\{S\}$ je $S$ a $S\in\mathcal P(S)$ podle (d).
+\end{vzor}
+
+\begin{uloha}{6.1}{nové}{u61}
+(a) Vypište všechny prvky $\mathcal P(\{a,b,c\})$. (b) Vypište $\mathcal P(\{1,\{2\}\})$. (c) Vypište $\mathcal P(\mathcal P(\emptyset))$. (d) Kolik prvků má $\mathcal P(\mathcal P(\{a\}))$?
+\mrizka{5.0cm}
+\end{uloha}
+
+\begin{uloha}{6.2}{$\blacklozenge$ Cv.~6.3}{u62}
+Pro libovolné množiny $A,B$ porovnejte (co do inkluze) a své tvrzení dokažte nebo vyvraťte protipříkladem:
+\begin{pol}
+  \item $\mathcal P(A\sm B)$ a $\mathcal P(A)\sm\mathcal P(B)$,
+  \item $\mathcal P(A\cup B)$ a $\mathcal P(A)\cup\mathcal P(B)$,
+  \item $\mathcal P(A\cap B)$ a $\mathcal P(A)\cap\mathcal P(B)$.
+\end{pol}
+\nap{V (a) mysli na prázdnou množinu. V (b) vem dvě různé jednoprvkové množiny. U (c) řetěz ekvivalencí.}
+\mrizka{9.0cm}
+\end{uloha}
+
+\begin{uloha}{6.3}{nové}{u63}
+Nechť $A=\{1,\{1\}\}$. Rozhodněte a zdůvodněte:
+\begin{dvasl}
+  \item $1\in\mathcal P(A)$
+  \item $\{1\}\in\mathcal P(A)$
+  \item $\{\{1\}\}\in\mathcal P(A)$
+  \item $\{\{1\}\}\subseteq\mathcal P(A)$
+  \item $A\in\mathcal P(A)$
+  \item $\emptyset\subseteq\mathcal P(A)$
+  \item $\emptyset\in\mathcal P(A)$
+  \item $\{1,\{1\}\}\subseteq\mathcal P(A)$
+\end{dvasl}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{6.4}{nové}{u64}
+Nechť $|A|=4$, $|B|=3$, $|A\cap B|=1$. Určete: $|A\cup B|$, $|\mathcal P(A\cup B)|$, $|\mathcal P(A\cap B)|$, $|\mathcal P(A)\cap\mathcal P(B)|$, $|\mathcal P(A)\cup\mathcal P(B)|$, $|A\times B|$. Využijte tvrzení z této kapitoly.
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{6.5}{nové (těžší)}{u65}
+Dokažte pro libovolné množiny: $A\subseteq B\iff\mathcal P(A)\subseteq\mathcal P(B)$.
+\nap{Pro „$\Leftarrow$“ použij, že $A\in\mathcal P(A)$.}
+\mrizka{5.0cm}
+\end{uloha}
+
+\kap{Indexovaná sjednocení a průniky}
+
+Sjednocení nebo průnik \emph{mnoha} množin $A_1,A_2,\dots$ se převádí na kvantifikátory. Je to jedna z nejčistších částí cvičení 6, pokud držíš dvě věci: co je prvek výsledku a kde jsou závorky.
+
+\begin{defin}{Indexované sjednocení a průnik}
+Pro množiny $A_1,A_2,A_3,\dots$ (indexy jsou přirozená čísla, konečně nebo nekonečně mnoho):
+\[
+x\in\bigcup_{i}A_i\iff\exists i:\ x\in A_i,\qquad
+x\in\bigcap_{i}A_i\iff\forall i:\ x\in A_i.
+\]
+Sjednocení je tedy „prvek je \emph{v nějaké}“, průnik je „prvek je \emph{ve všech}“. Je to stejné jako $\cup\leftrightarrow\lor$ a $\cap\leftrightarrow\land$.
+\end{defin}
+
+\begin{pozn}{Postup při výpočtu $\bigcup_{i=1}^{10}M_i$ nebo $\bigcap_{i=1}^{10}M_i$}
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+  \item \textbf{Vypiš} množiny $M_1,M_2,\dots,M_{10}$ (nebo je seskup do skupin se stejným obsahem).
+  \item \textbf{Sjednocení:} sesyp všechny prvky dohromady bez opakování. \textbf{Průnik:} nech jen to, co je v \emph{každé} z nich.
+  \item \textbf{Sleduj závorky.} Jsou-li prvky $M_i$ samy zabalené do dalších $\{\ \}$, pracuješ s množinami množin.
+\end{enumerate}
+\end{pozn}
+
+\begin{past}{$\{\bigcup\dots\}$ a $\bigcup\{\dots\}$ jsou dvě různé věci}
+$\bigcup_i\{M_i\}$ sjednocuje \emph{jednoprvkové} množiny $\{M_i\}$, jejichž prvkem je celá množina $M_i$. Výsledek je tedy množina množin $\{M_1,M_2,\dots\}$. Naopak $\{\bigcup_iM_i\}$ nejdřív sjednotí $M_i$ (sesype jejich obsah) a výsledek pak \emph{obalí} vnějšími závorkami, takže je to množina s \textbf{jedním} prvkem. U průniku stejně: $\bigcap_i\{M_i\}$ je obvykle $\emptyset$, protože různé jednoprvkové množiny $\{M_i\}$ nemají společný prvek.
+\end{past}
+
+\begin{vzor}{7.1\quad(nové, stejná technika jako Cv.~6.2)}
+Nechť $C_i=\{n\in\N\mid n\pr i\}$ (dělitelé čísla $i$). Určete (a) $\bigcup_{i=1}^{6}C_i$, (b) $\bigcap_{i=1}^{6}C_i$, (c) $\bigcup_{i=1}^{6}\{C_i\}$, (d) $\bigcap_{i=1}^{6}\{C_i\}$, (e) $\big\{\bigcup_{i=1}^{6}C_i\big\}$ a $\big\{\bigcap_{i=1}^{6}C_i\big\}$.
+\jak
+Nejdřív vypíšu všech šest množin, potom na ně aplikuju pravidla.
+\zapis
+\[
+C_1=\{1\},\ C_2=\{1,2\},\ C_3=\{1,3\},\ C_4=\{1,2,4\},\ C_5=\{1,5\},\ C_6=\{1,2,3,6\}.
+\]
+(a) $\bigcup C_i=\{1,2,3,4,5,6\}$ (v nějaké množině leží každé z čísel $1,\dots,6$).\\
+(b) $\bigcap C_i=\{1\}$ (jen jednička je ve všech, protože $1\in C_1=\{1\}$ a $1$ dělí všechno).\\
+(c) $\bigcup\{C_i\}=\big\{\{1\},\{1,2\},\{1,3\},\{1,2,4\},\{1,5\},\{1,2,3,6\}\big\}$, \textbf{šest prvků}, každý z nich je množina.\\
+(d) $\bigcap\{C_i\}=\emptyset$: množiny $\{C_1\},\{C_2\},\dots$ jsou jednoprvkové a s různými prvky.\\
+(e) $\big\{\bigcup C_i\big\}=\big\{\{1,2,3,4,5,6\}\big\}$ a $\big\{\bigcap C_i\big\}=\big\{\{1\}\big\}$, tj.\ jednoprvkové množiny, jejichž prvkem je výsledek z (a), resp.\ (b).
+\end{vzor}
+
+\begin{vzor}{7.2\quad(nové: nekonečný index)}
+Určete $\bigcup_{i\in\N}A_i$ a $\bigcap_{i\in\N}A_i$ pro $A_i=\{n\in\N\mid n\ge i\}$.
+\jak
+$A_1=\N$, $A_2=\{2,3,\dots\}$, $A_3=\{3,4,\dots\}$, množiny se zmenšují. Sjednocení: $x$ musí ležet v nějaké $A_i$, a $A_1=\N$ už obsahuje všechno. Průnik: $x$ musí ležet ve \emph{všech} $A_i$, tedy $x\ge i$ pro každé $i$.
+\zapis
+$\bigcup_{i\in\N}A_i=\N$ (protože $A_1=\N$). $\bigcap_{i\in\N}A_i=\emptyset$: kdyby $n$ ležel v průniku, platilo by $n\ge i$ pro všechna $i\in\N$, tedy i pro $i=n+1$, což dává $n\ge n+1$, spor.
+\end{vzor}
+
+\begin{uloha}{7.1}{$\blacklozenge$ Cv.~6.2 (sjednocení)}{u71}
+Jaké prvky obsahují následující množiny? Napřed vypište $M_i=\{j\in\N\mid j^2\le i\}$ a $N_i=\{j\in\N\mid j^2<i\}$ pro $i=1,\dots,10$.
+\begin{pol}
+  \item $\bigcup_{i=1}^{10}\{j\in\N\mid j^2\le i\}$
+  \item $\bigcup_{i=1}^{10}\{j\in\N\mid j^2< i\}$
+  \item $\bigcup_{i=1}^{10}\{\{j\in\N\mid j^2\le i\}\}$
+  \item $\bigcup_{i=1}^{10}\{\{j\in\N\mid j^2< i\}\}$
+  \item $\big\{\bigcup_{i=1}^{10}\{j\in\N\mid j^2\le i\}\big\}$
+\end{pol}
+\mrizka{7.0cm}
+\end{uloha}
+
+\begin{uloha}{7.2}{$\blacklozenge$ Cv.~6.2 (průniky)}{u72}
+A co když sjednocení v předchozí úloze nahradíme \textbf{průniky} (stejných pět zadání (a)--(e) s $\bigcap$ místo $\bigcup$)?
+\mrizka{5.0cm}
+\end{uloha}
+
+\begin{uloha}{7.3}{$\blacklozenge$ Cv.~6.5}{u73}
+Porovnejte (co do inkluze) trojici množin
+\[
+A=\{X: X\subseteq\N\},\qquad B=\bigcup_{n\in\N}\{X: X\subseteq\{1,\dots,n\}\},\qquad C=\bigcup_{k=0}^{\infty}\binom{\N}{k}.
+\]
+Dokažte rovnost, resp.\ nerovnost. Slovně popište, co jsou prvky každé z množin.
+\nap{$\binom{\N}{k}$ jsou $k$-prvkové podmnožiny $\N$. Který typ podmnožin $\N$ do $B$ a $C$ patří a který ne?}
+\mrizka{8.0cm}
+\end{uloha}
+
+\begin{uloha}{7.4}{nové}{u74}
+Určete $\bigcup_{i\in\N}A_i$ a $\bigcap_{i\in\N}A_i$ pro:
+\begin{pol}
+  \item $A_i=\{n\in\Z\mid |n|<i\}$
+  \item $A_i=\{n\in\N\mid i\pr n\}$
+  \item $A_i=\{2i\}$
+  \item $A_i=\{\{i\}\}$ (množina množin!) a dále $\Big\{\bigcup_{i\in\N}\{i\}\Big\}$
+\end{pol}
+\mrizka{6.0cm}
+\end{uloha}
+
+\kap{Kvíz: platí, nebo neplatí?}
+
+Dvacet tvrzení v pěti blocích. U každého rozhodni a zdůvodni: platí $\to$ z čeho plyne (krátký argument), neplatí $\to$ protipříklad nebo přesný důvod. Samotné „ano/ne“ na testu často nestačí na plný počet bodů. Řešení jsou v kapitole 11.
+
+\begin{uloha}{8.1}{Blok A: prvky a $\emptyset$}{kv1}
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+  \item $\emptyset\in\emptyset$.
+  \item Pro každou množinu $A$ platí $\emptyset\subseteq A$.
+  \item $\{1,2\}\subseteq\{1,\{2\}\}$.
+  \item Množina $\{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}$ má právě 3 prvky.
+\end{enumerate}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{8.2}{Blok B: vztahy a kvantifikátory}{kv2}
+\begin{enumerate}[leftmargin=2em,itemsep=2pt,start=5]
+  \item Jestliže $A\nsubseteq B$, pak $B\subseteq A$.
+  \item $A\sm B=\emptyset$ právě tehdy, když $A\subseteq B$.
+  \item Jestliže $A\cap B=\emptyset$, pak $A=\emptyset$ nebo $B=\emptyset$.
+  \item Výrok $\forall x\in\emptyset:\ x\neq x$ je pravdivý.
+\end{enumerate}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{8.3}{Blok C: operace}{kv3}
+Pro všechny množiny $A,B,C$:
+\begin{enumerate}[leftmargin=2em,itemsep=2pt,start=9]
+  \item $A\sm(B\sm C)=(A\sm B)\sm C$.
+  \item $(A\cup B)\sm B=A$.
+  \item $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$.
+  \item $(A\sm B)\cup(B\sm A)=(A\cup B)\sm(A\cap B)$.
+\end{enumerate}
+\mrizka{4.5cm}
+\end{uloha}
+
+\begin{uloha}{8.4}{Blok D: potenční množina}{kv4}
+\begin{enumerate}[leftmargin=2em,itemsep=2pt,start=13]
+  \item $\mathcal P(A)\cup\mathcal P(B)=\mathcal P(A\cup B)$ pro všechny množiny $A,B$.
+  \item $\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$ pro všechny množiny $A,B$.
+  \item Pro $A=\emptyset$ je $|\mathcal P(A)|=0$.
+  \item Je-li $A\subseteq B$, pak $\mathcal P(A)\subseteq\mathcal P(B)$.
+\end{enumerate}
+\mrizka{4.0cm}
+\end{uloha}
+
+\begin{uloha}{8.5}{Blok E: indexovaná sjednocení a průniky}{kv5}
+\begin{enumerate}[leftmargin=2em,itemsep=2pt,start=17]
+  \item $\bigcup_{i=1}^{3}\{\{i\}\}=\{1,2,3\}$.
+  \item $\Big\{\bigcap_{i=1}^{3}\{1,\dots,i\}\Big\}=\{\{1\}\}$.
+  \item $\bigcap_{i\in\N}\{n\in\N\mid n\ge i\}=\emptyset$.
+  \item $x\in\bigcup_{i}A_i$ právě tehdy, když $\forall i:\ x\in A_i$.
+\end{enumerate}
+\mrizka{4.0cm}
+\end{uloha}
+
+\kap{Zkušební písemky (20 minut, 20 bodů)}
+
+Obě písemky mají stejnou stavbu jako test podle cvičení 5 a 6: pět úloh po čtyřech bodech. Měř si čas (\textbf{20 minut}), nepoužívej poznámky ani kalkulačku a \emph{žádnou úlohu nenechávej prázdnou}, částečné body se počítají. Bodování je v kapitole 11. Písemku A dělej večer, písemku B klidně ráno jako rozcvičku.
+
+\vspace{4pt}\anchor{pisA}
+{\sffamily\bfseries\Large\color{accent} Písemka A}\hfill{\sffamily\small\color{muted}Jméno: \rule{5cm}{0.4pt}\quad Body: \rule{1.5cm}{0.4pt} / 20}\par\vspace{4pt}
+
+\textbf{1.}\ (4 b) Nechť $X,Y\subseteq\N$. Zapište množinovým zápisem:
+\begin{pol}
+  \item množinu všech čísel z $X$, která jsou menší než \emph{některé} číslo z $Y$ \hfill (2 b)
+  \item množinu všech přirozených čísel, jejichž \emph{každý} dělitel větší než $1$ je sudý \hfill (2 b)
+\end{pol}
+\mrizka{1.9cm}
+
+\textbf{2.}\ (4 b) Rozhodněte, zda je výrok pravdivý, a \emph{jednou větou} zdůvodněte (po 1 b):
+\begin{dvasl}
+  \item $\emptyset\in\mathcal P(\{\emptyset\})$
+  \item $\{\emptyset\}\subseteq\{\{\emptyset\}\}$
+  \item $\{1,2\}\cap\{\{1\},\{2\}\}=\emptyset$
+  \item $|\mathcal P(\{1,2,3\})\sm\{\emptyset\}|=7$
+\end{dvasl}
+\mrizka{1.9cm}
+
+\textbf{3.}\ (4 b) Kolik prvků mají množiny? Prvky vypište.
+\begin{pol}
+  \item $\{a,\{a\},\{a,a\},\{\{a\}\},\emptyset,\{\emptyset\}\}$ \hfill (2 b)
+  \item $\bigcup_{i=1}^{4}\{\{j\in\N\mid j<i\}\}$ \hfill (2 b)
+\end{pol}
+\mrizka{1.9cm}
+
+\textbf{4.}\ (4 b) Nechť $A,B$ jsou množiny celých čísel.
+\begin{pol}
+  \item Zapište kvantifikátory: $A\cap B\neq\emptyset$. \hfill (1 b)
+  \item Zapište kvantifikátory: „$A$ obsahuje všechna čísla z $B$ větší než $10$.“ \hfill (1 b)
+  \item Znegujte (bez negace před kvantifikátory): $\forall x\in A\ \exists y\in B:\ x<y$. \hfill (2 b)
+\end{pol}
+\mrizka{1.9cm}
+
+\textbf{5.}\ (4 b)
+\begin{pol}
+  \item Dokažte: $A\sm(B\cap C)=(A\sm B)\cup(A\sm C)$. \hfill (2 b)
+  \item Vyvraťte: $\mathcal P(A\sm B)=\mathcal P(A)\sm\mathcal P(B)$. \hfill (2 b)
+\end{pol}
+\mrizka{2.6cm}
+
+\clearpage
+\anchor{pisB}
+{\sffamily\bfseries\Large\color{accent} Písemka B}\hfill{\sffamily\small\color{muted}Jméno: \rule{5cm}{0.4pt}\quad Body: \rule{1.5cm}{0.4pt} / 20}\par\vspace{4pt}
+
+\textbf{1.}\ (4 b) Nechť $X,Y\subseteq\N$. Zapište množinovým zápisem:
+\begin{pol}
+  \item množinu všech čísel z $Y$, která nejsou dělitelná \emph{žádným} číslem z $X$ \hfill (2 b)
+  \item množinu všech lichých přirozených čísel, která jsou součtem dvou \emph{různých} čísel z $X$ \hfill (2 b)
+\end{pol}
+\mrizka{2.3cm}
+
+\textbf{2.}\ (4 b) Rozhodněte, zda je výrok pravdivý, a \emph{jednou větou} zdůvodněte (po 1 b):
+\begin{dvasl}
+  \item $1\in\mathcal P(\{1\})$
+  \item $\{\emptyset\}\in\mathcal P(\{\emptyset\})$
+  \item $\{1,2\}\subseteq\{\{1,2\}\}$
+  \item $\{\emptyset,\{\emptyset\}\}=\mathcal P(\{\emptyset\})$
+\end{dvasl}
+\mrizka{2.3cm}
+
+\textbf{3.}\ (4 b)
+\begin{pol}
+  \item Kolik prvků má $\{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\},\{\{\emptyset\}\}\}$? Prvky vypište. \hfill (2 b)
+  \item Určete $\bigcap_{i=1}^{5}\{j\in\N\mid j^2\le2i\}$ a $\Big\{\bigcup_{i=1}^{5}\{j\in\N\mid j^2\le2i\}\Big\}$. \hfill (2 b)
+\end{pol}
+\mrizka{2.3cm}
+
+\textbf{4.}\ (4 b) Nechť $P$ je množina všech celých násobků čísla $5$ a $A\subseteq\Z$.
+\begin{pol}
+  \item Zapište kvantifikátory: „žádné číslo z $A$ není násobkem pěti.“ \hfill (1 b)
+  \item Zapište kvantifikátory: „$A$ obsahuje všechny násobky pěti.“ Jaký je vztah $A$ a $P$? \hfill (1 b)
+  \item Zapište kvantifikátory: „$A$ má \emph{právě dva} prvky.“ \hfill (2 b)
+\end{pol}
+\mrizka{2.3cm}
+
+\textbf{5.}\ (4 b)
+\begin{pol}
+  \item Dokažte: $A\cup(B\sm A)=A\cup B$. \hfill (2 b)
+  \item Vyvraťte: $(A\cap B)\cup C=A\cap(B\cup C)$. \hfill (2 b)
+\end{pol}
+\mrizka{3.4cm}
+
+\kap{Tahák: všechno na jedné stránce}
+\small
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{multicols}{2}
+\textbf{\sffamily\color{accent}Zápis množin.} Výčtem $\{1,3,5\}$; vlastností $\{x\in X\mid V(x)\}$; předpisem $\{f(x)\mid x\in X\}=\{y\mid\exists x\in X:\ y=f(x)\}$. Na pořadí a opakování nezáleží. $\N=\{1,2,\dots\}$. \emph{Zkouška:} dosaď malý příklad.
+
+\textbf{\sffamily\color{accent}Slovo $\to$ symbol.} „každý, libovolný“ $=\forall$. „některý, existuje, aspoň jeden“ $=\exists$. „žádný“ $=\forall\neg$. „dva různé“ $\Rightarrow$ napiš $x_1\neq x_2$. Doména u každého kvantifikátoru!
+
+\textbf{\sffamily\color{accent}Zlaté pravidlo.} $\forall x\in M:(P\Rightarrow V)$, \ $\exists x\in M:(P\land V)$. Nikdy naopak.
+
+\textbf{\sffamily\color{accent}Negace.} $\neg\forall\equiv\exists\neg$, $\neg\exists\equiv\forall\neg$, $\neg(p\Rightarrow q)\equiv p\land\neg q$, $\neg(p\land q)\equiv\neg p\lor\neg q$, $\neg(p\lor q)\equiv\neg p\land\neg q$.
+
+\textbf{\sffamily\color{accent}Prvek vs.\ podmnožina.} $x\in A$ (prvek), $A\subseteq B\iff\forall x\in A: x\in B$. $\{x\}\subseteq A\iff x\in A$. $\{\{a\}\}\ne\{a\}$.
+
+\textbf{\sffamily\color{accent}Prázdná množina.} $\emptyset\subseteq A$ vždy. $\emptyset\neq\{\emptyset\}$ (0 vs.\ 1 prvek). $\mathcal P(\emptyset)=\{\emptyset\}$. $\forall x\in\emptyset$ vždy pravda, $\exists x\in\emptyset$ vždy nepravda. $\emptyset\in\emptyset$ neplatí.
+
+\textbf{\sffamily\color{accent}Počítání prvků.} Jen nejvyšší úroveň závorek. $\{\}=\emptyset$, $\{b,a\}=\{a,b\}$, $\{\{\},\{\}\}=\{\emptyset\}$, $\{y\}\cup\{z\}=\{y,z\}$. Vypiš různé objekty.
+
+\textbf{\sffamily\color{accent}Vztahy.}\\
+\begin{tabular}{@{}ll@{}}
+$A\subseteq B$ & $\forall x\in A: x\in B$\\
+$A=B$ & $A\subseteq B\land B\subseteq A$\\
+$A\nsubseteq B$ & $\exists x\in A: x\notin B$\\
+$A\cap B=\emptyset$ & $\forall x\in A: x\notin B$\\
+$A\sm B=\emptyset$ & $A\subseteq B$\\
+$A\sm B\neq\emptyset$ & $A\nsubseteq B$
+\end{tabular}\\
+Směr implikace $=$ směr inkluze: „$a\in A\Rightarrow$ sudé“ je $A\subseteq S$, „sudé $\Rightarrow a\in A$“ je $S\subseteq A$.
+
+\textbf{\sffamily\color{accent}Operace.} $\cup\leftrightarrow\lor$, $\cap\leftrightarrow\land$, $A\sm B=\{x\in A\mid x\notin B\}$ (není symetrický ani asociativní). Distributivita: $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$, $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$. De~Morgan: $A\sm(B\cup C)=(A\sm B)\cap(A\sm C)$, $A\sm(B\cap C)=(A\sm B)\cup(A\sm C)$.
+
+\textbf{\sffamily\color{accent}Důkaz rovnosti.} Řetěz ekvivalencí o prvku $x$, nebo dvě inkluze, nebo tabulka členství. \textbf{Vyvrácení:} jeden malý protipříklad (tabulka ukáže řádek).
+
+\textbf{\sffamily\color{accent}Velikosti.} $|A\cup B|=|A|+|B|-|A\cap B|$, $|A\times B|=|A||B|$, $|\mathcal P(A)|=2^{|A|}$.
+
+\textbf{\sffamily\color{accent}Potenční množina.} $X\in\mathcal P(A)\iff X\subseteq A$. $\emptyset,A\in\mathcal P(A)$. $\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$ (rovnost). $\mathcal P(A)\cup\mathcal P(B)\subsetneq\mathcal P(A\cup B)$ obecně (protipříklad $\{1\},\{2\}$, množina $\{1,2\}$). $\mathcal P(A\sm B)$ vs.\ $\mathcal P(A)\sm\mathcal P(B)$: neporovnatelné ($\emptyset$ je vlevo, ne vpravo). $A\subseteq B\iff\mathcal P(A)\subseteq\mathcal P(B)$.
+
+\textbf{\sffamily\color{accent}$\bigcup$ a $\bigcap$.} $x\in\bigcup A_i\iff\exists i: x\in A_i$. $x\in\bigcap A_i\iff\forall i: x\in A_i$. Závorky: $\bigcup\{M_i\}$ = množina množin $\{M_1,M_2,\dots\}$; $\{\bigcup M_i\}$ = jednoprvková množina s prvkem $\bigcup M_i$.
+
+\textbf{\sffamily\color{warn}Nejčastější pasti.} $\in$ vs.\ $\subseteq$. $\emptyset$ vs.\ $\{\emptyset\}$. $\{\}=\emptyset$ při počítání prvků. $\forall$ s $\land$ místo $\Rightarrow$. Zapomenuté $x_1\neq x_2$. $A\nsubseteq B$ $\ne$ $B\subseteq A$. $A\cap B=\emptyset$ $\ne$ „jedna je prázdná“. Vnější závorky u $\bigcup$/$\bigcap$. $\mathcal P(\emptyset)$ má 1 prvek.
+\end{multicols}
+\normalsize
+
+\kap{Řešení}
+
+Řešení otevírej až po vlastním pokusu. U úloh z cvičení ($\blacklozenge$) jsem výsledky porovnal se vzorovými řešeními kurzu; u nových úloh a v kvízu i v písemkách jsem všechna tvrzení a počty prvků ověřil výpočtem.
+
+\subsection{Řešení ke kapitole 1}
+
+\begin{reseni}{1.1}{u11}
+(a) $\exists x\in A:\ x\le3$.\quad (b) $\forall x\in A\ \exists y\in B:\ x\ge y$.\quad (c) $\exists x\in A:\ (2\pr x\land x\notin B)$.\\
+(d) $\neg(A\subseteq B\land B\nsubseteq C)\equiv A\nsubseteq B\lor B\subseteq C$, tedy $(\exists x\in A:\ x\notin B)\ \lor\ (\forall x\in B:\ x\in C)$.
+\end{reseni}
+
+\begin{reseni}{1.2}{u12}
+(a) \pravda, na $\emptyset$ není žádné $x$, které by porušilo $\forall$. (b) \nepravda, v $\emptyset$ není prvek. (c) \pravda ze stejného důvodu jako (a), ať je vlastnost jakkoli sporná. (d) \pravda, protože $\exists x\in\emptyset: x>0$ je nepravdivé a negace nepravdivého je pravdivá. (e) \nepravda: levá strana je pravdivá a pravá nepravdivá, implikace tedy neplatí. Pro neprázdnou $M$ by $\forall\Rightarrow\exists$ platilo, na $\emptyset$ ne.
+\end{reseni}
+
+\subsection{Řešení ke kapitole 2}
+
+\begin{reseni}{2.1}{u21}
+(a) $A=\{2^k\mid k\in\N\}=\{x\in\N\mid\exists k\in\N:\ x=2^k\}=\{2,4,8,\dots\}$. (Přirozená mocnina má exponent z $\N$; kdybys chtěl zahrnout i $1=2^0$, napiš $k\in\N_0$ a uveď to.)\\
+(b) $B=\{x\in\Z\mid x\pr n\}=\{x\in\Z\mid\exists k\in\Z:\ n=kx\}$.\\
+(c) $C=\{(2k+1)^2\mid k\in\Z\}=\{x\in\Z\mid\exists y\in\Z:\ (x=y^2\land 2\nepr y)\}=\{1,9,25,49,\dots\}$.
+\end{reseni}
+
+\begin{reseni}{2.2}{u22}
+(a) $F=\{x\in\N\mid|\{d\in\N\mid d\pr x\}|=12345\}$.\\
+(b) $G=\{x\in\bigcup_{i=1}^{n}M_i\mid\exists i,j\in\{1,\dots,n\}:\ (i\neq j\land x\in M_i\land x\in M_j)\}=\bigcup_{1\le i<j\le n}(M_i\cap M_j)$.\\
+(c) $H=\{X\in\mathcal P(M)\mid\exists k\in\N_0:\ |X|=2k\}$ (prvky $H$ jsou množiny, proto $X\in\mathcal P(M)$ před čárou).
+\end{reseni}
+
+\begin{reseni}{2.3}{u23}
+(a) $A=\{x\in X\mid\exists y\in Y:\ y\pr x\}$.\quad (b) $B=\{y\in Y\mid\exists x_1,x_2\in X:\ (x_1\neq x_2\land y=x_1+x_2)\}$.\quad (c) $C=\{z\in Z\mid\forall y\in Y:\ z>y\}$.\\
+Výsledná čísla jsou z $X$, $Y$, $Z$, proto je beru odtamtud a za čáru dávám vlastnost.
+\end{reseni}
+
+\begin{reseni}{2.4}{u24}
+(a) $D=\{d\in\Z\mid\exists x_1,x_2\in X:\ (x_1\neq x_2\land d=x_1-x_2)\}$.\\
+(b) $E=\{k\cdot x\mid k\in\Z\land x\in X\cup Y\}=\{n\in\Z\mid\exists k\in\Z\ \exists x\in X\cup Y:\ n=kx\}$ (řešení kurzu bere $k\in\Z$, tedy včetně $0$ a záporných násobků; vždy napiš, odkud $k$ bereš).\\
+(c) $F=\{n^2\mid n\in X\land(\forall y\in Y:\ n^2>y)\land(\exists z\in Z:\ n^2<z)\}$.
+\end{reseni}
+
+\begin{reseni}{2.5}{u25}
+(a) $\{-3,-2,-1,0,1,2,3\}$ (čtverce $\le10$, tedy $|x|\le3$).\quad (b) dělitelé $36$ jsou $1,2,3,4,6,9,12,18,36$, větší než $4$: $\{6,9,12,18,36\}$.\\
+(c) $k=1,\dots,5$ dává $0,2,6,12,20$.\quad (d) $\{1,4,9,16,25,36,49\}$.\\
+(e) $\{1,2\}$: každý dělitel musí být $\le2$, ale každé $n\ge3$ má dělitele $n>2$ (sebe sama). Zbývá $n=1$ (dělitel $1$) a $n=2$ (dělitelé $1,2$).
+\end{reseni}
+
+\begin{reseni}{2.6}{u26}
+(a) $\{x\in X\mid\forall y\in Y:\ x<y\}$.\quad (b) $\{z\in Z\mid\exists x\in X\ \exists y\in Y:\ z=x+y\}$.\\
+(c) $\{x\in X\mid\forall d\in\N:\ (d\pr x\Rightarrow d\in Y)\}$ (u $\forall$ je implikace).\\
+(d) $\{y_1y_2\mid y_1,y_2\in Y\land y_1\neq y_2\}$.\quad (e) $\{x\in X\mid\forall y\in Y:\ y\nepr x\}$ (pozor: je-li $1\in Y$, je výsledek prázdný).
+\end{reseni}
+
+\subsection{Řešení ke kapitole 3}
+
+\begin{reseni}{3.1}{u31}
+(a) \pravda. (b) \nepravda (0 vs.\ 1 prvek). (c) \pravda. (d) \nepravda ($\mathcal P(\emptyset)=\{\emptyset\}$ má 1 prvek). (e) \nepravda ($\{\}$ nemá prvek). (f) \pravda ($\mathcal P(\emptyset)=\{\emptyset\}$).
+\end{reseni}
+
+\begin{reseni}{3.2}{u32}
+(a) \textbf{9 prvků:} $a,\ b,\ c,\ \{a,b,c\},\ \{\{a\},\{b\},\{c\}\},\ \{a\},\ \{b\},\ \{c\},\ \{\{a\}\}$. Množina $\{c,b,a\}$ je tentýž objekt jako $\{a,b,c\}$, nepřidá nic.\\
+(b) \textbf{3 prvky:} $\emptyset,\ \{\emptyset\},\ \{\{\emptyset\}\}$ (protože $\{\}=\emptyset$ a $\{\{\},\{\}\}=\{\emptyset\}$).
+\end{reseni}
+
+\begin{reseni}{3.3}{u33}
+(a) \textbf{4 prvky:} $x,\ y,\ z,\ \{y,z\}$. Poslední člen je $\{\{y\}\cup\{z\}\}=\{\{y,z\}\}$, takže přidá jen $\{y,z\}$, který už tam je. \emph{Vzorové řešení kurzu zde uvádí 3, správně je 4.}\\
+(b) \textbf{2 prvky:} $1$ a $\{1\}$. Je $\{1,1\}=\{1\}$, $\{1,\{1\},1\}=\{1,\{1\}\}$ a $\{1,\{1,1\},1\}=\{1,\{1\}\}$.
+\end{reseni}
+
+\begin{reseni}{3.4}{u34}
+(a) \pravda, $\emptyset\subseteq$ každá množina. (b) \nepravda, $\emptyset$ nemá žádný prvek. (c) \pravda, $\emptyset\in\{\emptyset,\{\emptyset\}\}$. (d) \pravda, $\{\emptyset\}$ je prvkem pravé množiny. (e) \nepravda: prvky pravé množiny jsou $a,b,\{a\},\{b\}$, množina $\{a,b\}$ mezi nimi není. (f) \pravda: $\{a\}$ i $\{b\}$ jsou prvky. (g) \nepravda: prvek je $\{3\}$, ne $3$. (h) \nepravda: $\{3\}\subseteq S\iff 3\in S$, a to neplatí. (i) \pravda: $\{3\}\in S$.
+\end{reseni}
+
+\begin{reseni}{3.5}{u35}
+\begin{center}\small
+\begin{tabular}{@{}lccl@{}}
+$x$ & $x\in T$ & $x\subseteq T$ & důvod\\\hline
+$\{a,b\}$ & \Ano & \Ne & je prvek; ale $b\notin T$\\
+$\{\emptyset\}$ & \Ne & \Ano & není prvek; $\emptyset\in T$\\
+$\{b\}$ & \Ne & \Ne & není prvek; $b\notin T$\\
+$\{\{a,b\}\}$ & \Ne & \Ano & není prvek; $\{a,b\}\in T$\\
+$\{a,\emptyset\}$ & \Ne & \Ano & není prvek; $a\in T$ i $\emptyset\in T$
+\end{tabular}
+\end{center}
+\end{reseni}
+
+\begin{reseni}{3.6}{u36}
+(a) \textbf{3 prvky:} $\emptyset,\ \{\emptyset\},\ \{\{\emptyset\}\}$ (je $\{\emptyset,\emptyset\}=\{\emptyset\}$ a $\{\{\emptyset\},\{\emptyset\}\}=\{\{\emptyset\}\}$).\quad
+(b) \textbf{5 prvků:} $x,\ y,\ \{x\},\ \{y\},\ \{x,y\}$.\\
+(c) $\mathcal P(\{1,2\})=\{\emptyset,\{1\},\{2\},\{1,2\}\}$, po odebrání $\emptyset$ a $\{1\}$ zbyde $\{\{2\},\{1,2\}\}$, \textbf{2 prvky}.\quad
+(d) společní dělitelé $12$ a $18$: $\{1,2,3,6\}$, \textbf{4 prvky}.
+\end{reseni}
+
+\subsection{Řešení ke kapitole 4}
+
+\begin{reseni}{4.1}{u41}
+(a) $\forall a\in A:\ 2\pr a$, tedy $A\subseteq S$. (b) $\forall a\in\Z:\ (2\pr a\Rightarrow a\in A)$, tedy $S\subseteq A$. (c) $\forall a\in\Z:\ (a\in A\Leftrightarrow 2\pr a)$, tedy $A=S$.
+\end{reseni}
+
+\begin{reseni}{4.2}{u42}
+(a) $\forall a\in A:\ 3\pr a$, tedy $A\subseteq T$.\quad (b) $\forall a\in\Z:\ (3\pr a\Rightarrow a\in A)$, tedy $T\subseteq A$.\quad (c) $\forall a\in\Z:\ (a\in A\Leftrightarrow3\pr a)$, tedy $A=T$.\\
+(d) $\forall a\in A:\ 3\nepr a$, tedy $A\cap T=\emptyset$.\quad (e) $\exists a\in A:\ 3\pr a$, tedy $A\cap T\neq\emptyset$.
+\end{reseni}
+
+\begin{reseni}{4.3}{u43}
+(a) $\forall x\in A:\ x\in B$.\quad (b) $(\forall x\in A:\ x\in B)\land(\forall x\in B:\ x\in A)$.\quad (c) $\exists x\in A:\ x\notin B$.\\
+(d) $\exists x\,(x\in A\lor x\in B)$.\quad (e) $\forall x\in A:\ x\notin B$.\quad (f) $\exists x\in A:\ x\notin B$.
+\end{reseni}
+
+\begin{reseni}{4.4}{u44}
+(a) $(\exists x\in A:\ x\notin B)\land(\exists y\in B:\ y\notin A)$.\quad (b) $\exists x,y\in A:\ x\neq y$.\\
+(c) $\exists x\,\big(x\in A\land x\in B\land\forall y\,((y\in A\land y\in B)\Rightarrow y=x)\big)$.\quad (d) $(\forall x\in A:\ x\in B)\land(\exists y\in B:\ y\notin A)$.
+\end{reseni}
+
+\begin{reseni}{4.5}{u45}
+(a) $\neg(A\subseteq B\lor B\subseteq A)\equiv A\nsubseteq B\land B\nsubseteq A$, tedy $(\exists x\in A:\ x\notin B)\land(\exists y\in B:\ y\notin A)$: žádná z množin není podmnožinou druhé.\\
+(b) $\exists x\in A:\ x\in B$: množiny mají společný prvek.\\
+(c) $(\exists x\in A:\ x\notin B)\lor(\exists x\in B:\ x\notin A)$: jedna z množin má prvek, který druhá nemá.
+\end{reseni}
+
+\subsection{Řešení ke kapitole 5}
+
+\begin{reseni}{5.1}{u51}
+\begin{center}\small
+\begin{tabular}{|c|c|c|*{8}{c|}}
+\hline
+$A$&$B$&$C$&(a)&(b)&(c)&(d)&(e)&(f)&(g)&(h)\\\hline
+1&1&1&1&1&1&1&0&0&0&0\\\hline
+1&1&0&1&1&1&1&0&0&0&0\\\hline
+1&0&1&1&1&1&1&1&0&0&1\\\hline
+1&0&0&1&0&1&0&1&0&0&1\\\hline
+0&1&1&1&0&1&0&0&1&1&0\\\hline
+0&1&0&0&0&0&0&0&1&1&0\\\hline
+0&0&1&0&0&0&0&0&1&1&0\\\hline
+0&0&0&0&0&0&0&0&0&0&0\\\hline
+\end{tabular}
+\end{center}
+Rovné jsou dvojice \textbf{(a)=(c)}, \textbf{(b)=(d)}, \textbf{(e)=(h)}, \textbf{(f)=(g)}. Ostatní se liší, např.\ (a)$\neq$(b) v řádku $(1,0,0)$.
+\end{reseni}
+
+\begin{reseni}{5.2}{u52}
+(a) $x\in A\cup(B\cap C)\iff x\in A\lor(x\in B\land x\in C)\iff(x\in A\lor x\in B)\land(x\in A\lor x\in C)\iff x\in(A\cup B)\cap(A\cup C)$ (distributivita $\lor$ přes $\land$). \qed\\
+(b)
+\begin{align*}
+x\in(A\sm B)\sm(B\sm C)&\iff(x\in A\land x\notin B)\land\neg(x\in B\land x\notin C)\\
+&\iff(x\in A\land x\notin B)\land(x\notin B\lor x\in C).
+\end{align*}
+Druhý činitel je pravdivý automaticky, protože už víme $x\notin B$. Zbývá $x\in A\land x\notin B$, tedy $x\in A\sm B$. \qed
+\end{reseni}
+
+\begin{reseni}{5.3}{u53}
+$M_1=M_4$ a $M_2=M_3$, přičemž $M_1\subseteq M_2$, ale obráceně obecně ne.\\
+\emph{Proč:} $x\in M_1\iff x\in A\land\neg(x\in B\lor x\in C\lor x\in D)\iff x\in A\land x\notin B\land x\notin C\land x\notin D\iff x\in M_4$. Dále $x\in M_2\iff x\in A\land\neg(x\in B\land x\in C\land x\in D)\iff x\in A\land(x\notin B\lor x\notin C\lor x\notin D)\iff x\in M_3$. A $M_1\subseteq M_2$: je-li $x\in A$ a $x\notin B$ (a ostatní), pak jistě $x\notin B\cap C\cap D$.\\
+\emph{Protipříklad pro $M_2\subseteq M_1$:} $A=B=\{1\}$, $C=D=\emptyset$: $M_2=\{1\}\sm\emptyset=\{1\}$, ale $M_1=\{1\}\sm\{1\}=\emptyset$.
+\end{reseni}
+
+\begin{reseni}{5.4}{u54}
+(a) \pravda: $x\in(A\cup B)\sm C\iff(x\in A\lor x\in B)\land x\notin C\iff(x\in A\land x\notin C)\lor(x\in B\land x\notin C)$.\\
+(b) \pravda: $x\in A\sm(B\cup C)\iff x\in A\land x\notin B\land x\notin C\iff(x\in A\land x\notin B)\land x\notin C$.\\
+(c) \nepravda: $A=C=\{1\}$, $B=\emptyset$. Vlevo $\{1\}\cup\emptyset=\{1\}$, vpravo $(\{1\}\cup\emptyset)\sm\{1\}=\emptyset$.\\
+(d) \pravda: oba výroky znějí $x\in A\land x\in B\land x\notin C$.\\
+(e) \pravda: $(p\land\neg q)\lor(q\land\neg p)\equiv(p\lor q)\land\neg(p\land q)$ pro $p=(x\in A)$, $q=(x\in B)$; ověří to tabulka se čtyřmi řádky. Je to \emph{symetrický rozdíl}.\\
+(f) \pravda: $x\in A\sm(B\sm C)\iff x\in A\land(x\notin B\lor x\in C)\iff(x\in A\land x\notin B)\lor(x\in A\land x\in C)$.
+\end{reseni}
+
+\begin{reseni}{5.5}{u55}
+„$\Rightarrow$“: Vždy $A\cap B\subseteq A$. Je-li $x\in A$, pak $x\in B$ (z $A\subseteq B$), tedy $x\in A\cap B$. Proto $A\subseteq A\cap B$ a $A\cap B=A$. „$\Leftarrow$“: Je-li $A\cap B=A$ a $x\in A$, pak $x\in A\cap B$, tedy $x\in B$. \qed\\
+Dále $A\sm B=\emptyset\iff\neg\exists x\,(x\in A\land x\notin B)\iff\forall x\,(x\in A\Rightarrow x\in B)\iff A\subseteq B$. \qed
+\end{reseni}
+
+\begin{reseni}{5.6}{u56}
+(a) $|A\cup B|=|A|+|B|-|A\cap B|$, $|A\times B|=|A|\cdot|B|$, $|\mathcal P(A)|=2^{|A|}$.\quad (b) $8+5-2=11$, \ $8\cdot5=40$, \ $2^8=256$.\quad (c) $|F\cup S|=25+18-6=37$, žádný jazyk se neučí $40-37=\textbf{3}$ lidé.
+\end{reseni}
+
+\subsection{Řešení ke kapitole 6}
+
+\begin{reseni}{6.1}{u61}
+(a) $\mathcal P(\{a,b,c\})=\{\emptyset,\{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}\}$ (8 prvků).\quad (b) $\mathcal P(\{1,\{2\}\})=\{\emptyset,\{1\},\{\{2\}\},\{1,\{2\}\}\}$.\quad (c) $\mathcal P(\mathcal P(\emptyset))=\mathcal P(\{\emptyset\})=\{\emptyset,\{\emptyset\}\}$.\quad (d) $\mathcal P(\{a\})=\{\emptyset,\{a\}\}$ má 2 prvky, a jeho potence má $2^2=4$ prvky.
+\end{reseni}
+
+\begin{reseni}{6.2}{u62}
+\textbf{(c)} $\mathcal P(A\cap B)=\mathcal P(A)\cap\mathcal P(B)$ (rovnost): $X\in\mathcal P(A\cap B)\iff X\subseteq A\cap B\iff X\subseteq A\land X\subseteq B\iff X\in\mathcal P(A)\cap\mathcal P(B)$.\\
+\textbf{(b)} $\mathcal P(A)\cup\mathcal P(B)\subseteq\mathcal P(A\cup B)$, opačně ne. Je-li $X\subseteq A$ nebo $X\subseteq B$, pak $X\subseteq A\cup B$. Protipříklad: $A=\{1\}$, $B=\{2\}$, množina $\{1,2\}$ leží v $\mathcal P(A\cup B)$, ale ani v $\mathcal P(A)$, ani v $\mathcal P(B)$.\\
+\textbf{(a)} Neporovnatelné: $\emptyset\in\mathcal P(A\sm B)$, ale $\emptyset\in\mathcal P(B)$, takže $\emptyset\notin\mathcal P(A)\sm\mathcal P(B)$ (levá není podmnožinou pravé). Pro $A=\{1,2\}$, $B=\{2\}$ je $\mathcal P(A)\sm\mathcal P(B)=\{\{1\},\{1,2\}\}$, ale $\{1,2\}\notin\mathcal P(\{1\})$ (pravá není podmnožinou levé).
+\end{reseni}
+
+\begin{reseni}{6.3}{u63}
+Máme $A=\{1,\{1\}\}$, $\mathcal P(A)=\{\emptyset,\{1\},\{\{1\}\},\{1,\{1\}\}\}$.\\
+(a) \nepravda: $1$ není podmnožina $A$ (není množina), tedy $1\notin\mathcal P(A)$. (b) \pravda: $\{1\}\subseteq A$, protože $1\in A$. (c) \pravda: $\{\{1\}\}\subseteq A$, protože $\{1\}\in A$. (d) \pravda: $\{\{1\}\}\subseteq\mathcal P(A)\iff\{1\}\in\mathcal P(A)$, to je (b). (e) \pravda: $A\subseteq A$. (f) \pravda: $\emptyset\subseteq$ cokoli. (g) \pravda: $\emptyset\subseteq A$. (h) \nepravda: vyžadovalo by $1\in\mathcal P(A)$, což je (a).
+\end{reseni}
+
+\begin{reseni}{6.4}{u64}
+$|A\cup B|=4+3-1=6$; $|\mathcal P(A\cup B)|=2^6=64$; $|\mathcal P(A\cap B)|=2^1=2$; $|\mathcal P(A)\cap\mathcal P(B)|=|\mathcal P(A\cap B)|=2$ (rovnost z kapitoly 6); $|\mathcal P(A)\cup\mathcal P(B)|=16+8-2=22$; $|A\times B|=12$. (Všimni si $22<64$: sjednocení potencí je podstatně menší než potence sjednocení.)
+\end{reseni}
+
+\begin{reseni}{6.5}{u65}
+„$\Rightarrow$“: Nechť $A\subseteq B$ a $X\in\mathcal P(A)$. Pak $X\subseteq A\subseteq B$, tedy $X\subseteq B$ a $X\in\mathcal P(B)$. „$\Leftarrow$“: Nechť $\mathcal P(A)\subseteq\mathcal P(B)$. Protože $A\subseteq A$, je $A\in\mathcal P(A)$, tedy $A\in\mathcal P(B)$, tj.\ $A\subseteq B$. \qed
+\end{reseni}
+
+\subsection{Řešení ke kapitole 7}
+
+\begin{reseni}{7.1}{u71}
+\begin{center}\small
+\begin{tabular}{@{}c|cccccccccc@{}}
+$i$ & 1&2&3&4&5&6&7&8&9&10\\\hline
+$M_i$ & $\{1\}$&$\{1\}$&$\{1\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2,3\}$&$\{1,2,3\}$\\
+$N_i$ & $\emptyset$&$\{1\}$&$\{1\}$&$\{1\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2\}$&$\{1,2,3\}$
+\end{tabular}
+\end{center}
+(a) $\{1,2,3\}$.\quad (b) $\{1,2,3\}$ (prázdná $N_1$ výsledek neovlivní).\\
+(c) $\{\{1\},\{1,2\},\{1,2,3\}\}$ (tři prvky, každý z nich je množina).\quad (d) $\{\emptyset,\{1\},\{1,2\},\{1,2,3\}\}$ (čtyři prvky, přibyla $\{N_1\}=\{\emptyset\}$).\\
+(e) $\{\{1,2,3\}\}$ (jeden prvek).
+\end{reseni}
+
+\begin{reseni}{7.2}{u72}
+(a) $\{1\}\cap\{1,2\}\cap\{1,2,3\}=\{1\}$.\quad (b) $\emptyset$, protože $N_1=\emptyset$.\quad (c) $\emptyset$: jednoprvkové množiny $\{\{1\}\},\{\{1,2\}\},\{\{1,2,3\}\}$ nemají společný prvek.\quad (d) $\emptyset$ (stejně).\quad (e) $\{\{1\}\}$ (nejdřív průnik z (a), pak obalit).
+\end{reseni}
+
+\begin{reseni}{7.3}{u73}
+\textbf{Výsledek:} $B=C\subsetneq A$.\\
+$A=\mathcal P(\N)$ jsou \emph{všechny} podmnožiny $\N$, konečné i nekonečné (např.\ množina sudých čísel). $B$ jsou podmnožiny nějakého úseku $\{1,\dots,n\}$, tedy \emph{konečné} podmnožiny. $C$ je sjednocení $k$-prvkových podmnožin přes $k=0,1,2,\dots$, opět \emph{konečné} podmnožiny.\\
+\emph{$B\subseteq C$:} Je-li $X\subseteq\{1,\dots,n\}$, má $X$ nějaký počet $k\le n$ prvků, tedy $X\in\binom{\N}{k}\subseteq C$. \emph{$C\subseteq B$:} Je-li $X\in\binom{\N}{k}$, je $X$ konečná. Pro $X=\emptyset$ je $X\subseteq\{1\}$. Jinak vezmi $n=\max X$ a máš $X\subseteq\{1,\dots,n\}$, tedy $X\in B$.\\
+\emph{Ostrost:} $B,C\subseteq A$ je jasné. Množina sudých čísel leží v $A$, ale není konečná, takže není ani v $B$, ani v $C$.
+\end{reseni}
+
+\begin{reseni}{7.4}{u74}
+(a) $\bigcup=\Z$ (každé $n$ leží v $A_{|n|+1}$), $\bigcap=A_1=\{0\}$ (číslo $n$ musí splňovat $|n|<1$).\\
+(b) $\bigcup=\N$ (už $A_1=\N$), $\bigcap=\emptyset$ (číslo $n$ by muselo být dělitelné $n+1$, a to nejde).\\
+(c) $\bigcup=\{2,4,6,\dots\}$, $\bigcap=\emptyset$ (např.\ $A_1\cap A_2=\{2\}\cap\{4\}=\emptyset$).\\
+(d) $\bigcup_{i}\{\{i\}\}=\{\{1\},\{2\},\{3\},\dots\}$ (množina množin, každé $\{i\}$ je jeden prvek), $\bigcap=\emptyset$. A $\Big\{\bigcup_{i\in\N}\{i\}\Big\}=\{\N\}$: nejdřív sjednocení dá $\N$, potom obal vnějšími závorkami.
+\end{reseni}
+
+\subsection{Řešení kvízu}
+
+\begin{reseni}{8.1 Blok A}{kv1}
+1.\ \nepravda, $\emptyset$ nemá žádné prvky.\quad 2.\ \pravda (prázdná pravdivost).\quad 3.\ \nepravda: $2\notin\{1,\{2\}\}$, prvek je množina $\{2\}$.\quad 4.\ \pravda: $\emptyset$, $\{\emptyset\}$ a $\{\emptyset,\{\emptyset\}\}$ jsou tři různé objekty.
+\end{reseni}
+
+\begin{reseni}{8.2 Blok B}{kv2}
+5.\ \nepravda: $A=\{1,2\}$, $B=\{2,3\}$, ani jedna inkluze neplatí.\quad 6.\ \pravda ($A\sm B=\emptyset\iff\forall x\in A: x\in B$).\quad 7.\ \nepravda: $\{1\}\cap\{2\}=\emptyset$, ale obě jsou neprázdné.\quad 8.\ \pravda, prázdné $\forall$ je vždy pravdivé.
+\end{reseni}
+
+\begin{reseni}{8.3 Blok C}{kv3}
+9.\ \nepravda: $A=B=C=\{1\}$, vlevo $\{1\}$, vpravo $\emptyset$.\quad 10.\ \nepravda: $A=B=\{1\}$, vlevo $\emptyset$, vpravo $\{1\}$.\quad 11.\ \pravda (distributivita).\quad 12.\ \pravda (obě strany jsou symetrický rozdíl: prvky v právě jedné z množin).
+\end{reseni}
+
+\begin{reseni}{8.4 Blok D}{kv4}
+13.\ \nepravda: $A=\{1\}$, $B=\{2\}$, množina $\{1,2\}$ je vpravo, ne vlevo.\quad 14.\ \pravda ($X\subseteq A\cap B\iff X\subseteq A\land X\subseteq B$).\quad 15.\ \nepravda: $\mathcal P(\emptyset)=\{\emptyset\}$ má 1 prvek.\quad 16.\ \pravda: $X\subseteq A\subseteq B\Rightarrow X\subseteq B$.
+\end{reseni}
+
+\begin{reseni}{8.5 Blok E}{kv5}
+17.\ \nepravda: výsledek je $\{\{1\},\{2\},\{3\}\}$, množina množin.\quad 18.\ \pravda: průnik je $\{1\}$, a obalený dává $\{\{1\}\}$.\quad 19.\ \pravda ($n\ge n+1$ nelze).\quad 20.\ \nepravda: sjednocení odpovídá $\exists i$, průnik $\forall i$.
+\end{reseni}
+
+\subsection{Řešení a bodování zkušebních písemek}
+
+\begin{reseni}{Písemka A}{pisA}
+\textbf{1a} (2 b): $\{x\in X\mid\exists y\in Y:\ x<y\}$. (1 b základ $\{x\in X\mid\dots\}$, 1 b $\exists$ a nerovnost.)\\
+\textbf{1b} (2 b): $\{n\in\N\mid\forall d\in\N:\ ((d\pr n\land d>1)\Rightarrow2\pr d)\}$ (to jsou mocniny dvojky včetně $1$). (1 b za $\forall$ s \emph{implikací}, 1 b za správnou podmínku.)\\
+\textbf{2} (po 1 b): (a) \pravda, $\mathcal P(\{\emptyset\})=\{\emptyset,\{\emptyset\}\}$. (b) \nepravda, $\emptyset\notin\{\{\emptyset\}\}$ (jediný prvek je $\{\emptyset\}$). (c) \pravda, prvky $1,2$ se liší od $\{1\},\{2\}$. (d) \pravda, $8-1=7$.\\
+\textbf{3a} (2 b): \textbf{5 prvků:} $a,\ \{a\},\ \{\{a\}\},\ \emptyset,\ \{\emptyset\}$ (je $\{a,a\}=\{a\}$). \textbf{3b} (2 b): $\{\emptyset,\{1\},\{1,2\},\{1,2,3\}\}$ (pro $i=1,2,3,4$ vyjde $\emptyset,\{1\},\{1,2\},\{1,2,3\}$), 4 prvky.\\
+\textbf{4a} (1 b): $\exists x\in A:\ x\in B$.\quad \textbf{4b} (1 b): $\forall b\in B:\ (b>10\Rightarrow b\in A)$.\quad \textbf{4c} (2 b): $\exists x\in A\ \forall y\in B:\ x\ge y$ (1 b za převrácení obou kvantifikátorů, 1 b za $x\ge y$).\\
+\textbf{5a} (2 b): $x\in A\sm(B\cap C)\iff x\in A\land\neg(x\in B\land x\in C)\iff x\in A\land(x\notin B\lor x\notin C)\iff(x\in A\land x\notin B)\lor(x\in A\land x\notin C)\iff x\in(A\sm B)\cup(A\sm C)$.\\
+\textbf{5b} (2 b): $\emptyset\in\mathcal P(A\sm B)$ pro každé $A,B$, ale $\emptyset\in\mathcal P(B)$, takže $\emptyset\notin\mathcal P(A)\sm\mathcal P(B)$. Konkrétně $A=\{1\}$, $B=\{2\}$. (1 b nápad, 1 b konkrétní protipříklad.)
+\end{reseni}
+
+\begin{reseni}{Písemka B}{pisB}
+\textbf{1a} (2 b): $\{y\in Y\mid\forall x\in X:\ x\nepr y\}$.\quad \textbf{1b} (2 b): $\{n\in\N\mid 2\nepr n\land\exists x_1,x_2\in X:\ (x_1\neq x_2\land n=x_1+x_2)\}$.\\
+\textbf{2} (po 1 b): (a) \nepravda: $\mathcal P(\{1\})=\{\emptyset,\{1\}\}$, číslo $1$ není podmnožina. (b) \pravda: $\{\emptyset\}\subseteq\{\emptyset\}$. (c) \nepravda: $1\notin\{\{1,2\}\}$. (d) \pravda: $\mathcal P(\{\emptyset\})=\{\emptyset,\{\emptyset\}\}$.\\
+\textbf{3a} (2 b): \textbf{4 prvky:} $\emptyset,\ \{\emptyset\},\ \{\emptyset,\{\emptyset\}\},\ \{\{\emptyset\}\}$.\quad \textbf{3b} (2 b): množiny jsou $\{1\},\{1,2\},\{1,2\},\{1,2\},\{1,2,3\}$, takže průnik je $\{1\}$ a $\{\bigcup\dots\}=\{\{1,2,3\}\}$ (1 b každé).\\
+\textbf{4a} (1 b): $\forall a\in A:\ 5\nepr a$.\quad \textbf{4b} (1 b): $\forall a\in\Z:\ (5\pr a\Rightarrow a\in A)$, tedy $P\subseteq A$.\quad \textbf{4c} (2 b): $\exists x,y\in A:\ \big(x\neq y\land\forall z\in A:\ (z=x\lor z=y)\big)$.\\
+\textbf{5a} (2 b): $x\in A\cup(B\sm A)\iff x\in A\lor(x\in B\land x\notin A)\iff(x\in A\lor x\in B)\land(x\in A\lor x\notin A)\iff x\in A\cup B$ (distributivita a tautologie).\quad \textbf{5b} (2 b): $A=B=\emptyset$, $C=\{1\}$: vlevo $\{1\}$, vpravo $\emptyset\cap(\emptyset\cup\{1\})=\emptyset$.\\[2pt]
+\emph{Celkové hodnocení obou písemek:} 17--20 b výborně, 13--16 b dobře, pod 12 b se vrať ke kapitolám u úloh, kde jsi ztratil body (označeno v řešení čísly úloh).
+\end{reseni}
+
+\end{document}
